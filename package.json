@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/trivikr/temp-client-s3#readme",
   "devDependencies": {
-    "lerna": "3.22.1"
+    "@types/chai-as-promised": "^7.1.2",
+    "lerna": "3.22.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^8.0.1"
   },
   "workspaces": ["clients/*"]
 }
