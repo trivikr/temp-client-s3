@@ -1,3 +1,4 @@
+// @ts-ignore: package.json will be imported from dist folders
 import packageInfo from "../package.json";
 
 import { decorateDefaultCredentialProvider } from "@aws-sdk/client-sts";
