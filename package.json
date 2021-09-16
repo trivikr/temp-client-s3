@@ -1,0 +1,21 @@
+{
+  "name": "temp-client-s3",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Testing install size reduction on @aws-sdk/client-s3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trivikr/temp-client-s3.git"
+  },
+  "keywords": [],
+  "author": "Kamat, Trivikram",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/trivikr/temp-client-s3/issues"
+  },
+  "homepage": "https://github.com/trivikr/temp-client-s3#readme"
+}
