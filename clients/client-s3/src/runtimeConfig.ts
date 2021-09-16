@@ -1,4 +1,5 @@
-import packageInfo from "./package.json";
+// @ts-ignore: package.json will be imported from dist folders
+import packageInfo from "../package.json";
 
 import { decorateDefaultCredentialProvider } from "@aws-sdk/client-sts";
 import { NODE_REGION_CONFIG_FILE_OPTIONS, NODE_REGION_CONFIG_OPTIONS } from "@aws-sdk/config-resolver";
