@@ -3,10 +3,9 @@
   "description": "Testing install size reduction in @aws-sdk/client-s3",
   "version": "0.1.0",
   "scripts": {
-    "clean": "yarn remove-definitions && yarn remove-dist && yarn remove-documentation",
+    "clean": "yarn remove-dist && yarn remove-documentation",
     "build-documentation": "yarn remove-documentation && typedoc ./",
-    "remove-definitions": "rimraf ./types",
-    "remove-dist": "rimraf ./dist",
+    "remove-dist": "rimraf ./dist-*",
     "remove-documentation": "rimraf ./docs",
     "test:unit": "ts-mocha src/**/*.spec.ts",
     "test:e2e": "ts-mocha test/**/*.ispec.ts && karma start karma.conf.js",
