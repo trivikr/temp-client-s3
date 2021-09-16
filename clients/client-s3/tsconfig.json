@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
     "alwaysStrict": true,
     "target": "ES2018",
     "module": "commonjs",
@@ -17,7 +18,13 @@
     "types": ["mocha", "node"]
   },
   "typedocOptions": {
-    "exclude": ["**/node_modules/**", "**/*.spec.ts", "**/protocols/*.ts", "**/e2e/*.ts", "**/endpoints.ts"],
+    "exclude": [
+      "**/node_modules/**",
+      "**/*.spec.ts",
+      "**/protocols/*.ts",
+      "**/e2e/*.ts",
+      "**/endpoints.ts"
+    ],
     "excludeNotExported": true,
     "excludePrivate": true,
     "hideGenerator": true,
