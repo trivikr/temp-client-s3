@@ -20,5 +20,6 @@
   "homepage": "https://github.com/trivikr/temp-client-s3#readme",
   "devDependencies": {
     "lerna": "3.22.1"
-  }
+  },
+  "workspaces": ["packages/*"]
 }
