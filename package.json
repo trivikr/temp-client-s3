@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/trivikr/temp-client-s3#readme",
   "devDependencies": {
-    "@aws-sdk/karma-credential-loader": "3.31.0",
+    "@aws-sdk/karma-credential-loader": "3.28.0",
     "@types/chai-as-promised": "^7.1.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
