@@ -23,5 +23,8 @@ The version v0.2.0 added in [#7](https://github.com/trivikr/temp-client-s3/pull/
 publishes only files in dist folders.
 
 ```console
-Update after publish
+version:       0.2.0
+package size:  616.3 kB
+unpacked size: 7.1 MB
+total files:   670
 ```
