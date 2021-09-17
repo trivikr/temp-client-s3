@@ -52,3 +52,15 @@ package size:  438.4 kB
 unpacked size: 5.3 MB
 total files:   670
 ```
+
+### v0.2.3
+
+The version v0.2.3 added in [#12](https://github.com/trivikr/temp-client-s3/pull/12)
+removes sourceMap files.
+
+```console
+version:       0.2.3
+package size:  339.7 kB
+unpacked size: 3.8 MB
+total files:   448
+```
