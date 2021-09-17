@@ -29,5 +29,5 @@
     "theme": "minimal",
     "plugin": ["@aws-sdk/client-documentation-generator"]
   },
-  "exclude": ["test/**/*"]
+  "exclude": ["test/**/*", "src/**/*.spec.ts"]
 }
