@@ -40,3 +40,15 @@ package size:  549.6 kB
 unpacked size: 6.3 MB
 total files:   670
 ```
+
+### v0.2.2
+
+The version v0.2.2 added in [#11](https://github.com/trivikr/temp-client-s3/pull/11)
+strips comments from downlevel-dts files.
+
+```console
+version:       0.2.2
+package size:  438.4 kB
+unpacked size: 5.3 MB
+total files:   670
+```
