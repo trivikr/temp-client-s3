@@ -28,3 +28,15 @@ package size:  616.3 kB
 unpacked size: 7.1 MB
 total files:   670
 ```
+
+### v0.2.1
+
+The version v0.2.1 added in [#9](https://github.com/trivikr/temp-client-s3/pull/9)
+removed comments from transpiled files.
+
+```console
+version:       0.2.1
+package size:  549.6 kB
+unpacked size: 6.3 MB
+total files:   670
+```
