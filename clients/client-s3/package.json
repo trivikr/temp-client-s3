@@ -3,10 +3,9 @@
   "description": "Testing install size reduction in @aws-sdk/client-s3",
   "version": "0.0.2",
   "scripts": {
-    "clean": "yarn remove-definitions && yarn remove-dist && yarn remove-documentation",
+    "clean": "yarn remove-dist && yarn remove-documentation",
     "build-documentation": "yarn remove-documentation && typedoc ./",
-    "remove-definitions": "rimraf ./types",
-    "remove-dist": "rimraf ./dist",
+    "remove-dist": "rimraf ./dist-*",
     "remove-documentation": "rimraf ./docs",
     "test:unit": "ts-mocha src/**/*.spec.ts",
     "test:e2e": "ts-mocha test/**/*.ispec.ts && karma start karma.conf.js",
@@ -14,11 +13,11 @@
     "build:cjs": "tsc -p tsconfig.json",
     "build:es": "tsc -p tsconfig.es.json",
     "build": "yarn build:cjs && yarn build:es",
-    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4"
+    "downlevel-dts": "downlevel-dts dist-types dist-types/ts3.4"
   },
-  "main": "./dist/cjs/index.js",
-  "types": "./dist/types/index.d.ts",
-  "module": "./dist/es/index.js",
+  "main": "./dist-cjs/index.js",
+  "types": "./dist-types/index.d.ts",
+  "module": "./dist-es/index.js",
   "browser": {
     "./runtimeConfig": "./runtimeConfig.browser"
   },
@@ -92,8 +91,8 @@
   },
   "typesVersions": {
     "<4.0": {
-      "dist/types/*": [
-        "dist/types/ts3.4/*"
+      "dist-types/*": [
+        "dist-types/ts3.4/*"
       ]
     }
   },
