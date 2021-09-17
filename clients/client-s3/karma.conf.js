@@ -2,9 +2,9 @@ module.exports = function (config) {
   config.set({
     basePath: "",
     frameworks: ["mocha", "chai"],
-    files: ["test/e2e/**/*.ispec.ts"],
+    files: ["e2e/**/*.ispec.ts"],
     preprocessors: {
-      "test/e2e/**/*.ispec.ts": ["webpack", "sourcemap", "credentials", "env"],
+      "e2e/**/*.ispec.ts": ["webpack", "sourcemap", "credentials", "env"],
     },
     webpackMiddleware: {
       stats: "minimal",

@@ -1,5 +1,4 @@
-// @ts-ignore: package.json will be imported from dist folders
-import packageInfo from "../package.json";
+import packageInfo from "./package.json";
 
 import { Sha256 } from "@aws-crypto/sha256-browser";
 import { eventStreamSerdeProvider } from "@aws-sdk/eventstream-serde-browser";

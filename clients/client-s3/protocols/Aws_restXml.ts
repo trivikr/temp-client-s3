@@ -392,18 +392,12 @@ import {
 } from "@aws-sdk/protocol-http";
 import {
   dateToUtcString as __dateToUtcString,
-  expectNonNull as __expectNonNull,
-  expectObject as __expectObject,
   expectString as __expectString,
-  expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
-  parseRfc3339DateTime as __parseRfc3339DateTime,
-  parseRfc7231DateTime as __parseRfc7231DateTime,
-  strictParseInt32 as __strictParseInt32,
-  strictParseLong as __strictParseLong,
+  strictParseInt as __strictParseInt,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -5022,7 +5016,7 @@ export const deserializeAws_restXmlCompleteMultipartUploadCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Bucket"] !== undefined) {
     contents.Bucket = __expectString(data["Bucket"]);
   }
@@ -5118,7 +5112,7 @@ export const deserializeAws_restXmlCopyObjectCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.CopyObjectResult = deserializeAws_restXmlCopyObjectResult(data, context);
   return Promise.resolve(contents);
 };
@@ -5246,7 +5240,7 @@ export const deserializeAws_restXmlCreateMultipartUploadCommand = async (
     UploadId: undefined,
   };
   if (output.headers["x-amz-abort-date"] !== undefined) {
-    contents.AbortDate = __expectNonNull(__parseRfc7231DateTime(output.headers["x-amz-abort-date"]));
+    contents.AbortDate = new Date(output.headers["x-amz-abort-date"]);
   }
   if (output.headers["x-amz-abort-rule-id"] !== undefined) {
     contents.AbortRuleId = output.headers["x-amz-abort-rule-id"];
@@ -5272,7 +5266,7 @@ export const deserializeAws_restXmlCreateMultipartUploadCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Bucket"] !== undefined) {
     contents.Bucket = __expectString(data["Bucket"]);
   }
@@ -5944,7 +5938,7 @@ export const deserializeAws_restXmlDeleteObjectsCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.Deleted === "") {
     contents.Deleted = [];
   }
@@ -6090,7 +6084,7 @@ export const deserializeAws_restXmlGetBucketAccelerateConfigurationCommand = asy
     $metadata: deserializeMetadata(output),
     Status: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Status"] !== undefined) {
     contents.Status = __expectString(data["Status"]);
   }
@@ -6138,7 +6132,7 @@ export const deserializeAws_restXmlGetBucketAclCommand = async (
     Grants: undefined,
     Owner: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.AccessControlList === "") {
     contents.Grants = [];
   }
@@ -6191,7 +6185,7 @@ export const deserializeAws_restXmlGetBucketAnalyticsConfigurationCommand = asyn
     $metadata: deserializeMetadata(output),
     AnalyticsConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.AnalyticsConfiguration = deserializeAws_restXmlAnalyticsConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6236,7 +6230,7 @@ export const deserializeAws_restXmlGetBucketCorsCommand = async (
     $metadata: deserializeMetadata(output),
     CORSRules: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.CORSRule === "") {
     contents.CORSRules = [];
   }
@@ -6286,7 +6280,7 @@ export const deserializeAws_restXmlGetBucketEncryptionCommand = async (
     $metadata: deserializeMetadata(output),
     ServerSideEncryptionConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.ServerSideEncryptionConfiguration = deserializeAws_restXmlServerSideEncryptionConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6331,7 +6325,7 @@ export const deserializeAws_restXmlGetBucketIntelligentTieringConfigurationComma
     $metadata: deserializeMetadata(output),
     IntelligentTieringConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.IntelligentTieringConfiguration = deserializeAws_restXmlIntelligentTieringConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6376,7 +6370,7 @@ export const deserializeAws_restXmlGetBucketInventoryConfigurationCommand = asyn
     $metadata: deserializeMetadata(output),
     InventoryConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.InventoryConfiguration = deserializeAws_restXmlInventoryConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6421,7 +6415,7 @@ export const deserializeAws_restXmlGetBucketLifecycleConfigurationCommand = asyn
     $metadata: deserializeMetadata(output),
     Rules: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.Rule === "") {
     contents.Rules = [];
   }
@@ -6471,7 +6465,7 @@ export const deserializeAws_restXmlGetBucketLocationCommand = async (
     $metadata: deserializeMetadata(output),
     LocationConstraint: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["LocationConstraint"] !== undefined) {
     contents.LocationConstraint = __expectString(data["LocationConstraint"]);
   }
@@ -6518,7 +6512,7 @@ export const deserializeAws_restXmlGetBucketLoggingCommand = async (
     $metadata: deserializeMetadata(output),
     LoggingEnabled: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["LoggingEnabled"] !== undefined) {
     contents.LoggingEnabled = deserializeAws_restXmlLoggingEnabled(data["LoggingEnabled"], context);
   }
@@ -6565,7 +6559,7 @@ export const deserializeAws_restXmlGetBucketMetricsConfigurationCommand = async 
     $metadata: deserializeMetadata(output),
     MetricsConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.MetricsConfiguration = deserializeAws_restXmlMetricsConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6612,7 +6606,7 @@ export const deserializeAws_restXmlGetBucketNotificationConfigurationCommand = a
     QueueConfigurations: undefined,
     TopicConfigurations: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.CloudFunctionConfiguration === "") {
     contents.LambdaFunctionConfigurations = [];
   }
@@ -6683,7 +6677,7 @@ export const deserializeAws_restXmlGetBucketOwnershipControlsCommand = async (
     $metadata: deserializeMetadata(output),
     OwnershipControls: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.OwnershipControls = deserializeAws_restXmlOwnershipControls(data, context);
   return Promise.resolve(contents);
 };
@@ -6773,7 +6767,7 @@ export const deserializeAws_restXmlGetBucketPolicyStatusCommand = async (
     $metadata: deserializeMetadata(output),
     PolicyStatus: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.PolicyStatus = deserializeAws_restXmlPolicyStatus(data, context);
   return Promise.resolve(contents);
 };
@@ -6818,7 +6812,7 @@ export const deserializeAws_restXmlGetBucketReplicationCommand = async (
     $metadata: deserializeMetadata(output),
     ReplicationConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.ReplicationConfiguration = deserializeAws_restXmlReplicationConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -6863,7 +6857,7 @@ export const deserializeAws_restXmlGetBucketRequestPaymentCommand = async (
     $metadata: deserializeMetadata(output),
     Payer: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Payer"] !== undefined) {
     contents.Payer = __expectString(data["Payer"]);
   }
@@ -6910,7 +6904,7 @@ export const deserializeAws_restXmlGetBucketTaggingCommand = async (
     $metadata: deserializeMetadata(output),
     TagSet: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.TagSet === "") {
     contents.TagSet = [];
   }
@@ -6961,7 +6955,7 @@ export const deserializeAws_restXmlGetBucketVersioningCommand = async (
     MFADelete: undefined,
     Status: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["MfaDelete"] !== undefined) {
     contents.MFADelete = __expectString(data["MfaDelete"]);
   }
@@ -7014,7 +7008,7 @@ export const deserializeAws_restXmlGetBucketWebsiteCommand = async (
     RedirectAllRequestsTo: undefined,
     RoutingRules: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["ErrorDocument"] !== undefined) {
     contents.ErrorDocument = deserializeAws_restXmlErrorDocument(data["ErrorDocument"], context);
   }
@@ -7123,16 +7117,16 @@ export const deserializeAws_restXmlGetObjectCommand = async (
     contents.Restore = output.headers["x-amz-restore"];
   }
   if (output.headers["last-modified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc7231DateTime(output.headers["last-modified"]));
+    contents.LastModified = new Date(output.headers["last-modified"]);
   }
   if (output.headers["content-length"] !== undefined) {
-    contents.ContentLength = __strictParseLong(output.headers["content-length"]);
+    contents.ContentLength = __strictParseInt(output.headers["content-length"]);
   }
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
   if (output.headers["x-amz-missing-meta"] !== undefined) {
-    contents.MissingMeta = __strictParseInt32(output.headers["x-amz-missing-meta"]);
+    contents.MissingMeta = __strictParseInt(output.headers["x-amz-missing-meta"]);
   }
   if (output.headers["x-amz-version-id"] !== undefined) {
     contents.VersionId = output.headers["x-amz-version-id"];
@@ -7156,7 +7150,7 @@ export const deserializeAws_restXmlGetObjectCommand = async (
     contents.ContentType = output.headers["content-type"];
   }
   if (output.headers["expires"] !== undefined) {
-    contents.Expires = __expectNonNull(__parseRfc7231DateTime(output.headers["expires"]));
+    contents.Expires = new Date(output.headers["expires"]);
   }
   if (output.headers["x-amz-website-redirect-location"] !== undefined) {
     contents.WebsiteRedirectLocation = output.headers["x-amz-website-redirect-location"];
@@ -7186,18 +7180,16 @@ export const deserializeAws_restXmlGetObjectCommand = async (
     contents.ReplicationStatus = output.headers["x-amz-replication-status"];
   }
   if (output.headers["x-amz-mp-parts-count"] !== undefined) {
-    contents.PartsCount = __strictParseInt32(output.headers["x-amz-mp-parts-count"]);
+    contents.PartsCount = __strictParseInt(output.headers["x-amz-mp-parts-count"]);
   }
   if (output.headers["x-amz-tagging-count"] !== undefined) {
-    contents.TagCount = __strictParseInt32(output.headers["x-amz-tagging-count"]);
+    contents.TagCount = __strictParseInt(output.headers["x-amz-tagging-count"]);
   }
   if (output.headers["x-amz-object-lock-mode"] !== undefined) {
     contents.ObjectLockMode = output.headers["x-amz-object-lock-mode"];
   }
   if (output.headers["x-amz-object-lock-retain-until-date"] !== undefined) {
-    contents.ObjectLockRetainUntilDate = __expectNonNull(
-      __parseRfc3339DateTime(output.headers["x-amz-object-lock-retain-until-date"])
-    );
+    contents.ObjectLockRetainUntilDate = new Date(output.headers["x-amz-object-lock-retain-until-date"]);
   }
   if (output.headers["x-amz-object-lock-legal-hold"] !== undefined) {
     contents.ObjectLockLegalHoldStatus = output.headers["x-amz-object-lock-legal-hold"];
@@ -7276,7 +7268,7 @@ export const deserializeAws_restXmlGetObjectAclCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.AccessControlList === "") {
     contents.Grants = [];
   }
@@ -7337,7 +7329,7 @@ export const deserializeAws_restXmlGetObjectLegalHoldCommand = async (
     $metadata: deserializeMetadata(output),
     LegalHold: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.LegalHold = deserializeAws_restXmlObjectLockLegalHold(data, context);
   return Promise.resolve(contents);
 };
@@ -7382,7 +7374,7 @@ export const deserializeAws_restXmlGetObjectLockConfigurationCommand = async (
     $metadata: deserializeMetadata(output),
     ObjectLockConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.ObjectLockConfiguration = deserializeAws_restXmlObjectLockConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -7427,7 +7419,7 @@ export const deserializeAws_restXmlGetObjectRetentionCommand = async (
     $metadata: deserializeMetadata(output),
     Retention: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.Retention = deserializeAws_restXmlObjectLockRetention(data, context);
   return Promise.resolve(contents);
 };
@@ -7476,7 +7468,7 @@ export const deserializeAws_restXmlGetObjectTaggingCommand = async (
   if (output.headers["x-amz-version-id"] !== undefined) {
     contents.VersionId = output.headers["x-amz-version-id"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.TagSet === "") {
     contents.TagSet = [];
   }
@@ -7575,7 +7567,7 @@ export const deserializeAws_restXmlGetPublicAccessBlockCommand = async (
     $metadata: deserializeMetadata(output),
     PublicAccessBlockConfiguration: undefined,
   };
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.PublicAccessBlockConfiguration = deserializeAws_restXmlPublicAccessBlockConfiguration(data, context);
   return Promise.resolve(contents);
 };
@@ -7716,16 +7708,16 @@ export const deserializeAws_restXmlHeadObjectCommand = async (
     contents.ArchiveStatus = output.headers["x-amz-archive-status"];
   }
   if (output.headers["last-modified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc7231DateTime(output.headers["last-modified"]));
+    contents.LastModified = new Date(output.headers["last-modified"]);
   }
   if (output.headers["content-length"] !== undefined) {
-    contents.ContentLength = __strictParseLong(output.headers["content-length"]);
+    contents.ContentLength = __strictParseInt(output.headers["content-length"]);
   }
   if (output.headers["etag"] !== undefined) {
     contents.ETag = output.headers["etag"];
   }
   if (output.headers["x-amz-missing-meta"] !== undefined) {
-    contents.MissingMeta = __strictParseInt32(output.headers["x-amz-missing-meta"]);
+    contents.MissingMeta = __strictParseInt(output.headers["x-amz-missing-meta"]);
   }
   if (output.headers["x-amz-version-id"] !== undefined) {
     contents.VersionId = output.headers["x-amz-version-id"];
@@ -7746,7 +7738,7 @@ export const deserializeAws_restXmlHeadObjectCommand = async (
     contents.ContentType = output.headers["content-type"];
   }
   if (output.headers["expires"] !== undefined) {
-    contents.Expires = __expectNonNull(__parseRfc7231DateTime(output.headers["expires"]));
+    contents.Expires = new Date(output.headers["expires"]);
   }
   if (output.headers["x-amz-website-redirect-location"] !== undefined) {
     contents.WebsiteRedirectLocation = output.headers["x-amz-website-redirect-location"];
@@ -7776,15 +7768,13 @@ export const deserializeAws_restXmlHeadObjectCommand = async (
     contents.ReplicationStatus = output.headers["x-amz-replication-status"];
   }
   if (output.headers["x-amz-mp-parts-count"] !== undefined) {
-    contents.PartsCount = __strictParseInt32(output.headers["x-amz-mp-parts-count"]);
+    contents.PartsCount = __strictParseInt(output.headers["x-amz-mp-parts-count"]);
   }
   if (output.headers["x-amz-object-lock-mode"] !== undefined) {
     contents.ObjectLockMode = output.headers["x-amz-object-lock-mode"];
   }
   if (output.headers["x-amz-object-lock-retain-until-date"] !== undefined) {
-    contents.ObjectLockRetainUntilDate = __expectNonNull(
-      __parseRfc3339DateTime(output.headers["x-amz-object-lock-retain-until-date"])
-    );
+    contents.ObjectLockRetainUntilDate = new Date(output.headers["x-amz-object-lock-retain-until-date"]);
   }
   if (output.headers["x-amz-object-lock-legal-hold"] !== undefined) {
     contents.ObjectLockLegalHoldStatus = output.headers["x-amz-object-lock-legal-hold"];
@@ -7852,7 +7842,7 @@ export const deserializeAws_restXmlListBucketAnalyticsConfigurationsCommand = as
     IsTruncated: undefined,
     NextContinuationToken: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.AnalyticsConfiguration === "") {
     contents.AnalyticsConfigurationList = [];
   }
@@ -7917,7 +7907,7 @@ export const deserializeAws_restXmlListBucketIntelligentTieringConfigurationsCom
     IsTruncated: undefined,
     NextContinuationToken: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["ContinuationToken"] !== undefined) {
     contents.ContinuationToken = __expectString(data["ContinuationToken"]);
   }
@@ -7982,7 +7972,7 @@ export const deserializeAws_restXmlListBucketInventoryConfigurationsCommand = as
     IsTruncated: undefined,
     NextContinuationToken: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["ContinuationToken"] !== undefined) {
     contents.ContinuationToken = __expectString(data["ContinuationToken"]);
   }
@@ -8047,7 +8037,7 @@ export const deserializeAws_restXmlListBucketMetricsConfigurationsCommand = asyn
     MetricsConfigurationList: undefined,
     NextContinuationToken: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["ContinuationToken"] !== undefined) {
     contents.ContinuationToken = __expectString(data["ContinuationToken"]);
   }
@@ -8110,7 +8100,7 @@ export const deserializeAws_restXmlListBucketsCommand = async (
     Buckets: undefined,
     Owner: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.Buckets === "") {
     contents.Buckets = [];
   }
@@ -8174,7 +8164,7 @@ export const deserializeAws_restXmlListMultipartUploadsCommand = async (
     UploadIdMarker: undefined,
     Uploads: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Bucket"] !== undefined) {
     contents.Bucket = __expectString(data["Bucket"]);
   }
@@ -8200,7 +8190,7 @@ export const deserializeAws_restXmlListMultipartUploadsCommand = async (
     contents.KeyMarker = __expectString(data["KeyMarker"]);
   }
   if (data["MaxUploads"] !== undefined) {
-    contents.MaxUploads = __strictParseInt32(data["MaxUploads"]) as number;
+    contents.MaxUploads = __strictParseInt(data["MaxUploads"]) as number;
   }
   if (data["NextKeyMarker"] !== undefined) {
     contents.NextKeyMarker = __expectString(data["NextKeyMarker"]);
@@ -8272,7 +8262,7 @@ export const deserializeAws_restXmlListObjectsCommand = async (
     NextMarker: undefined,
     Prefix: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.CommonPrefixes === "") {
     contents.CommonPrefixes = [];
   }
@@ -8301,7 +8291,7 @@ export const deserializeAws_restXmlListObjectsCommand = async (
     contents.Marker = __expectString(data["Marker"]);
   }
   if (data["MaxKeys"] !== undefined) {
-    contents.MaxKeys = __strictParseInt32(data["MaxKeys"]) as number;
+    contents.MaxKeys = __strictParseInt(data["MaxKeys"]) as number;
   }
   if (data["Name"] !== undefined) {
     contents.Name = __expectString(data["Name"]);
@@ -8374,7 +8364,7 @@ export const deserializeAws_restXmlListObjectsV2Command = async (
     Prefix: undefined,
     StartAfter: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.CommonPrefixes === "") {
     contents.CommonPrefixes = [];
   }
@@ -8403,10 +8393,10 @@ export const deserializeAws_restXmlListObjectsV2Command = async (
     contents.IsTruncated = __parseBoolean(data["IsTruncated"]);
   }
   if (data["KeyCount"] !== undefined) {
-    contents.KeyCount = __strictParseInt32(data["KeyCount"]) as number;
+    contents.KeyCount = __strictParseInt(data["KeyCount"]) as number;
   }
   if (data["MaxKeys"] !== undefined) {
-    contents.MaxKeys = __strictParseInt32(data["MaxKeys"]) as number;
+    contents.MaxKeys = __strictParseInt(data["MaxKeys"]) as number;
   }
   if (data["Name"] !== undefined) {
     contents.Name = __expectString(data["Name"]);
@@ -8483,7 +8473,7 @@ export const deserializeAws_restXmlListObjectVersionsCommand = async (
     VersionIdMarker: undefined,
     Versions: undefined,
   };
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data.CommonPrefixes === "") {
     contents.CommonPrefixes = [];
   }
@@ -8512,7 +8502,7 @@ export const deserializeAws_restXmlListObjectVersionsCommand = async (
     contents.KeyMarker = __expectString(data["KeyMarker"]);
   }
   if (data["MaxKeys"] !== undefined) {
-    contents.MaxKeys = __strictParseInt32(data["MaxKeys"]) as number;
+    contents.MaxKeys = __strictParseInt(data["MaxKeys"]) as number;
   }
   if (data["Name"] !== undefined) {
     contents.Name = __expectString(data["Name"]);
@@ -8592,7 +8582,7 @@ export const deserializeAws_restXmlListPartsCommand = async (
     UploadId: undefined,
   };
   if (output.headers["x-amz-abort-date"] !== undefined) {
-    contents.AbortDate = __expectNonNull(__parseRfc7231DateTime(output.headers["x-amz-abort-date"]));
+    contents.AbortDate = new Date(output.headers["x-amz-abort-date"]);
   }
   if (output.headers["x-amz-abort-rule-id"] !== undefined) {
     contents.AbortRuleId = output.headers["x-amz-abort-rule-id"];
@@ -8600,7 +8590,7 @@ export const deserializeAws_restXmlListPartsCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
+  const data: any = await parseBody(output.body, context);
   if (data["Bucket"] !== undefined) {
     contents.Bucket = __expectString(data["Bucket"]);
   }
@@ -8614,7 +8604,7 @@ export const deserializeAws_restXmlListPartsCommand = async (
     contents.Key = __expectString(data["Key"]);
   }
   if (data["MaxParts"] !== undefined) {
-    contents.MaxParts = __strictParseInt32(data["MaxParts"]) as number;
+    contents.MaxParts = __strictParseInt(data["MaxParts"]) as number;
   }
   if (data["NextPartNumberMarker"] !== undefined) {
     contents.NextPartNumberMarker = __expectString(data["NextPartNumberMarker"]);
@@ -10040,7 +10030,7 @@ export const deserializeAws_restXmlUploadPartCopyCommand = async (
   if (output.headers["x-amz-request-charged"] !== undefined) {
     contents.RequestCharged = output.headers["x-amz-request-charged"];
   }
-  const data: { [key: string]: any } | undefined = __expectObject(await parseBody(output.body, context));
+  const data: any = await parseBody(output.body, context);
   contents.CopyPartResult = deserializeAws_restXmlCopyPartResult(data, context);
   return Promise.resolve(contents);
 };
@@ -12546,7 +12536,7 @@ const deserializeAws_restXmlAbortIncompleteMultipartUpload = (
     DaysAfterInitiation: undefined,
   };
   if (output["DaysAfterInitiation"] !== undefined) {
-    contents.DaysAfterInitiation = __strictParseInt32(output["DaysAfterInitiation"]) as number;
+    contents.DaysAfterInitiation = __strictParseInt(output["DaysAfterInitiation"]) as number;
   }
   return contents;
 };
@@ -12624,7 +12614,7 @@ const deserializeAws_restXmlAnalyticsConfiguration = (output: any, context: __Se
     contents.Id = __expectString(output["Id"]);
   }
   if (output["Filter"] !== undefined) {
-    contents.Filter = deserializeAws_restXmlAnalyticsFilter(__expectUnion(output["Filter"]), context);
+    contents.Filter = deserializeAws_restXmlAnalyticsFilter(output["Filter"], context);
   }
   if (output["StorageClassAnalysis"] !== undefined) {
     contents.StorageClassAnalysis = deserializeAws_restXmlStorageClassAnalysis(output["StorageClassAnalysis"], context);
@@ -12715,7 +12705,7 @@ const deserializeAws_restXmlBucket = (output: any, context: __SerdeContext): Buc
     contents.Name = __expectString(output["Name"]);
   }
   if (output["CreationDate"] !== undefined) {
-    contents.CreationDate = __expectNonNull(__parseRfc3339DateTime(output["CreationDate"]));
+    contents.CreationDate = new Date(output["CreationDate"]);
   }
   return contents;
 };
@@ -12780,7 +12770,7 @@ const deserializeAws_restXmlCopyObjectResult = (output: any, context: __SerdeCon
     contents.ETag = __expectString(output["ETag"]);
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   return contents;
 };
@@ -12794,7 +12784,7 @@ const deserializeAws_restXmlCopyPartResult = (output: any, context: __SerdeConte
     contents.ETag = __expectString(output["ETag"]);
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   return contents;
 };
@@ -12848,7 +12838,7 @@ const deserializeAws_restXmlCORSRule = (output: any, context: __SerdeContext): C
     );
   }
   if (output["MaxAgeSeconds"] !== undefined) {
-    contents.MaxAgeSeconds = __strictParseInt32(output["MaxAgeSeconds"]) as number;
+    contents.MaxAgeSeconds = __strictParseInt(output["MaxAgeSeconds"]) as number;
   }
   return contents;
 };
@@ -12874,10 +12864,10 @@ const deserializeAws_restXmlDefaultRetention = (output: any, context: __SerdeCon
     contents.Mode = __expectString(output["Mode"]);
   }
   if (output["Days"] !== undefined) {
-    contents.Days = __strictParseInt32(output["Days"]) as number;
+    contents.Days = __strictParseInt(output["Days"]) as number;
   }
   if (output["Years"] !== undefined) {
-    contents.Years = __strictParseInt32(output["Years"]) as number;
+    contents.Years = __strictParseInt(output["Years"]) as number;
   }
   return contents;
 };
@@ -12936,7 +12926,7 @@ const deserializeAws_restXmlDeleteMarkerEntry = (output: any, context: __SerdeCo
     contents.IsLatest = __parseBoolean(output["IsLatest"]);
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   return contents;
 };
@@ -13477,10 +13467,10 @@ const deserializeAws_restXmlLifecycleExpiration = (output: any, context: __Serde
     ExpiredObjectDeleteMarker: undefined,
   };
   if (output["Date"] !== undefined) {
-    contents.Date = __expectNonNull(__parseRfc3339DateTime(output["Date"]));
+    contents.Date = new Date(output["Date"]);
   }
   if (output["Days"] !== undefined) {
-    contents.Days = __strictParseInt32(output["Days"]) as number;
+    contents.Days = __strictParseInt(output["Days"]) as number;
   }
   if (output["ExpiredObjectDeleteMarker"] !== undefined) {
     contents.ExpiredObjectDeleteMarker = __parseBoolean(output["ExpiredObjectDeleteMarker"]);
@@ -13510,7 +13500,7 @@ const deserializeAws_restXmlLifecycleRule = (output: any, context: __SerdeContex
     contents.Prefix = __expectString(output["Prefix"]);
   }
   if (output["Filter"] !== undefined) {
-    contents.Filter = deserializeAws_restXmlLifecycleRuleFilter(__expectUnion(output["Filter"]), context);
+    contents.Filter = deserializeAws_restXmlLifecycleRuleFilter(output["Filter"], context);
   }
   if (output["Status"] !== undefined) {
     contents.Status = __expectString(output["Status"]);
@@ -13659,7 +13649,7 @@ const deserializeAws_restXmlMetricsConfiguration = (output: any, context: __Serd
     contents.Id = __expectString(output["Id"]);
   }
   if (output["Filter"] !== undefined) {
-    contents.Filter = deserializeAws_restXmlMetricsFilter(__expectUnion(output["Filter"]), context);
+    contents.Filter = deserializeAws_restXmlMetricsFilter(output["Filter"], context);
   }
   return contents;
 };
@@ -13713,7 +13703,7 @@ const deserializeAws_restXmlMultipartUpload = (output: any, context: __SerdeCont
     contents.Key = __expectString(output["Key"]);
   }
   if (output["Initiated"] !== undefined) {
-    contents.Initiated = __expectNonNull(__parseRfc3339DateTime(output["Initiated"]));
+    contents.Initiated = new Date(output["Initiated"]);
   }
   if (output["StorageClass"] !== undefined) {
     contents.StorageClass = __expectString(output["StorageClass"]);
@@ -13746,7 +13736,7 @@ const deserializeAws_restXmlNoncurrentVersionExpiration = (
     NoncurrentDays: undefined,
   };
   if (output["NoncurrentDays"] !== undefined) {
-    contents.NoncurrentDays = __strictParseInt32(output["NoncurrentDays"]) as number;
+    contents.NoncurrentDays = __strictParseInt(output["NoncurrentDays"]) as number;
   }
   return contents;
 };
@@ -13760,7 +13750,7 @@ const deserializeAws_restXmlNoncurrentVersionTransition = (
     StorageClass: undefined,
   };
   if (output["NoncurrentDays"] !== undefined) {
-    contents.NoncurrentDays = __strictParseInt32(output["NoncurrentDays"]) as number;
+    contents.NoncurrentDays = __strictParseInt(output["NoncurrentDays"]) as number;
   }
   if (output["StorageClass"] !== undefined) {
     contents.StorageClass = __expectString(output["StorageClass"]);
@@ -13808,13 +13798,13 @@ const deserializeAws_restXml_Object = (output: any, context: __SerdeContext): _O
     contents.Key = __expectString(output["Key"]);
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   if (output["ETag"] !== undefined) {
     contents.ETag = __expectString(output["ETag"]);
   }
   if (output["Size"] !== undefined) {
-    contents.Size = __strictParseLong(output["Size"]) as number;
+    contents.Size = __strictParseInt(output["Size"]) as number;
   }
   if (output["StorageClass"] !== undefined) {
     contents.StorageClass = __expectString(output["StorageClass"]);
@@ -13872,7 +13862,7 @@ const deserializeAws_restXmlObjectLockRetention = (output: any, context: __Serde
     contents.Mode = __expectString(output["Mode"]);
   }
   if (output["RetainUntilDate"] !== undefined) {
-    contents.RetainUntilDate = __expectNonNull(__parseRfc3339DateTime(output["RetainUntilDate"]));
+    contents.RetainUntilDate = new Date(output["RetainUntilDate"]);
   }
   return contents;
 };
@@ -13902,7 +13892,7 @@ const deserializeAws_restXmlObjectVersion = (output: any, context: __SerdeContex
     contents.ETag = __expectString(output["ETag"]);
   }
   if (output["Size"] !== undefined) {
-    contents.Size = __strictParseLong(output["Size"]) as number;
+    contents.Size = __strictParseInt(output["Size"]) as number;
   }
   if (output["StorageClass"] !== undefined) {
     contents.StorageClass = __expectString(output["StorageClass"]);
@@ -13917,7 +13907,7 @@ const deserializeAws_restXmlObjectVersion = (output: any, context: __SerdeContex
     contents.IsLatest = __parseBoolean(output["IsLatest"]);
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   if (output["Owner"] !== undefined) {
     contents.Owner = deserializeAws_restXmlOwner(output["Owner"], context);
@@ -13995,16 +13985,16 @@ const deserializeAws_restXmlPart = (output: any, context: __SerdeContext): Part 
     Size: undefined,
   };
   if (output["PartNumber"] !== undefined) {
-    contents.PartNumber = __strictParseInt32(output["PartNumber"]) as number;
+    contents.PartNumber = __strictParseInt(output["PartNumber"]) as number;
   }
   if (output["LastModified"] !== undefined) {
-    contents.LastModified = __expectNonNull(__parseRfc3339DateTime(output["LastModified"]));
+    contents.LastModified = new Date(output["LastModified"]);
   }
   if (output["ETag"] !== undefined) {
     contents.ETag = __expectString(output["ETag"]);
   }
   if (output["Size"] !== undefined) {
-    contents.Size = __strictParseLong(output["Size"]) as number;
+    contents.Size = __strictParseInt(output["Size"]) as number;
   }
   return contents;
 };
@@ -14037,13 +14027,13 @@ const deserializeAws_restXmlProgress = (output: any, context: __SerdeContext): P
     BytesReturned: undefined,
   };
   if (output["BytesScanned"] !== undefined) {
-    contents.BytesScanned = __strictParseLong(output["BytesScanned"]) as number;
+    contents.BytesScanned = __strictParseInt(output["BytesScanned"]) as number;
   }
   if (output["BytesProcessed"] !== undefined) {
-    contents.BytesProcessed = __strictParseLong(output["BytesProcessed"]) as number;
+    contents.BytesProcessed = __strictParseInt(output["BytesProcessed"]) as number;
   }
   if (output["BytesReturned"] !== undefined) {
-    contents.BytesReturned = __strictParseLong(output["BytesReturned"]) as number;
+    contents.BytesReturned = __strictParseInt(output["BytesReturned"]) as number;
   }
   return contents;
 };
@@ -14215,13 +14205,13 @@ const deserializeAws_restXmlReplicationRule = (output: any, context: __SerdeCont
     contents.ID = __expectString(output["ID"]);
   }
   if (output["Priority"] !== undefined) {
-    contents.Priority = __strictParseInt32(output["Priority"]) as number;
+    contents.Priority = __strictParseInt(output["Priority"]) as number;
   }
   if (output["Prefix"] !== undefined) {
     contents.Prefix = __expectString(output["Prefix"]);
   }
   if (output["Filter"] !== undefined) {
-    contents.Filter = deserializeAws_restXmlReplicationRuleFilter(__expectUnion(output["Filter"]), context);
+    contents.Filter = deserializeAws_restXmlReplicationRuleFilter(output["Filter"], context);
   }
   if (output["Status"] !== undefined) {
     contents.Status = __expectString(output["Status"]);
@@ -14319,7 +14309,7 @@ const deserializeAws_restXmlReplicationTimeValue = (output: any, context: __Serd
     Minutes: undefined,
   };
   if (output["Minutes"] !== undefined) {
-    contents.Minutes = __strictParseInt32(output["Minutes"]) as number;
+    contents.Minutes = __strictParseInt(output["Minutes"]) as number;
   }
   return contents;
 };
@@ -14513,13 +14503,13 @@ const deserializeAws_restXmlStats = (output: any, context: __SerdeContext): Stat
     BytesReturned: undefined,
   };
   if (output["BytesScanned"] !== undefined) {
-    contents.BytesScanned = __strictParseLong(output["BytesScanned"]) as number;
+    contents.BytesScanned = __strictParseInt(output["BytesScanned"]) as number;
   }
   if (output["BytesProcessed"] !== undefined) {
-    contents.BytesProcessed = __strictParseLong(output["BytesProcessed"]) as number;
+    contents.BytesProcessed = __strictParseInt(output["BytesProcessed"]) as number;
   }
   if (output["BytesReturned"] !== undefined) {
-    contents.BytesReturned = __strictParseLong(output["BytesReturned"]) as number;
+    contents.BytesReturned = __strictParseInt(output["BytesReturned"]) as number;
   }
   return contents;
 };
@@ -14617,7 +14607,7 @@ const deserializeAws_restXmlTiering = (output: any, context: __SerdeContext): Ti
     AccessTier: undefined,
   };
   if (output["Days"] !== undefined) {
-    contents.Days = __strictParseInt32(output["Days"]) as number;
+    contents.Days = __strictParseInt(output["Days"]) as number;
   }
   if (output["AccessTier"] !== undefined) {
     contents.AccessTier = __expectString(output["AccessTier"]);
@@ -14679,10 +14669,10 @@ const deserializeAws_restXmlTransition = (output: any, context: __SerdeContext):
     StorageClass: undefined,
   };
   if (output["Date"] !== undefined) {
-    contents.Date = __expectNonNull(__parseRfc3339DateTime(output["Date"]));
+    contents.Date = new Date(output["Date"]);
   }
   if (output["Days"] !== undefined) {
-    contents.Days = __strictParseInt32(output["Days"]) as number;
+    contents.Days = __strictParseInt(output["Days"]) as number;
   }
   if (output["StorageClass"] !== undefined) {
     contents.StorageClass = __expectString(output["StorageClass"]);

@@ -5,7 +5,7 @@
  */
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { S3 } from "../../src/index";
+import { S3 } from "../index";
 import { Credentials } from "@aws-sdk/types";
 import { createBuffer } from "./helpers";
 chai.use(chaiAsPromised);
