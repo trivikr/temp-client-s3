@@ -24,6 +24,9 @@
   "react-native": {
     "./runtimeConfig": "./runtimeConfig.native"
   },
+  "files": [
+    "dist-*"
+  ],
   "sideEffects": false,
   "dependencies": {
     "@aws-crypto/sha256-browser": "^1.0.0",
