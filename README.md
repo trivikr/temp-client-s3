@@ -6,7 +6,8 @@ Testing install size reduction on @aws-sdk/client-s3
 
 ### v0.1.0
 
-The version v0.1.0 added in [#6](https://github.com/trivikr/temp-client-s3/pull/6)
+The [@trivikr-test/client-s3@0.1.0](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.1.0)
+from [#6](https://github.com/trivikr/temp-client-s3/pull/6)
 contains source code of **@aws-sdk/client-s3@3.28.0**
 
 ```console
@@ -19,7 +20,8 @@ total files:   806
 
 ### v0.2.0
 
-The version v0.2.0 added in [#7](https://github.com/trivikr/temp-client-s3/pull/7)
+The [@trivikr-test/client-s3@0.2.0](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.0)
+from [#7](https://github.com/trivikr/temp-client-s3/pull/7)
 publishes only files in dist folders.
 
 ```console
@@ -31,7 +33,8 @@ total files:   670
 
 ### v0.2.1
 
-The version v0.2.1 added in [#9](https://github.com/trivikr/temp-client-s3/pull/9)
+The [@trivikr-test/client-s3@0.2.1](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.1)
+from [#9](https://github.com/trivikr/temp-client-s3/pull/9)
 removed comments from transpiled files.
 
 ```console
@@ -43,7 +46,8 @@ total files:   670
 
 ### v0.2.2
 
-The version v0.2.2 added in [#11](https://github.com/trivikr/temp-client-s3/pull/11)
+The [@trivikr-test/client-s3@0.2.2](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.2)
+from [#11](https://github.com/trivikr/temp-client-s3/pull/11)
 strips comments from downlevel-dts files.
 
 ```console
@@ -55,7 +59,8 @@ total files:   670
 
 ### v0.2.3
 
-The version v0.2.3 added in [#12](https://github.com/trivikr/temp-client-s3/pull/12)
+The [@trivikr-test/client-s3@0.2.3](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.3)
+from [#12](https://github.com/trivikr/temp-client-s3/pull/12)
 removes sourceMap files.
 
 ```console
