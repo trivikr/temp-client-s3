@@ -16,14 +16,17 @@ unpacked size: 8.1 MB
 total files:   697
 ```
 
-### v0.0.2
+### v0.0.4
 
-The version v0.0.2 added in [#2](https://github.com/trivikr/temp-client-s3/pull/2)
-moves source code to src folder.
+The version v0.0.4 contains following changes:
+
+- move source files to src folder from [#2](https://github.com/trivikr/temp-client-s3/pull/2)
+- use dist-_ instead of dist/_ for outDir from [#4](https://github.com/trivikr/temp-client-s3/pull/2)
+- only publish files in dist-\* from [#5](https://github.com/trivikr/temp-client-s3/pull/2)
 
 ```console
-version:       0.0.2
-package size:  806.8 kB
-unpacked size: 10.1 MB
-total files:   912
+version:       0.0.4
+package size:  480.5 kB
+unpacked size: 5.8 MB
+total files:   564
 ```
