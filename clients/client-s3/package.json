@@ -1,7 +1,7 @@
 {
-  "name": "@aws-sdk/client-s3",
-  "description": "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native",
-  "version": "3.28.0",
+  "name": "@trivikr-test/client-s3",
+  "description": "Testing install size reduction in @aws-sdk/client-s3",
+  "version": "0.1.0",
   "scripts": {
     "clean": "yarn remove-definitions && yarn remove-dist && yarn remove-documentation",
     "build-documentation": "yarn remove-documentation && typedoc ./",
