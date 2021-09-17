@@ -41,6 +41,7 @@
     "mocha": "^8.0.1",
     "prettier": "2.3.0",
     "puppeteer": "^4.0.0",
+    "strip-comments": "2.0.1",
     "ts-loader": "^7.0.5",
     "ts-mocha": "^8.0.0",
     "webpack": "^4.43.0",
