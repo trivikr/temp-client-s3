@@ -13,8 +13,7 @@
     "build:cjs": "tsc -p tsconfig.json",
     "build:es": "tsc -p tsconfig.es.json",
     "build:types": "tsc -p tsconfig.types.json",
-    "build": "yarn build:cjs && yarn build:es && yarn build:types",
-    "downlevel-dts": "downlevel-dts dist-types dist-types/ts3.4"
+    "build": "yarn build:cjs && yarn build:es && yarn build:types"
   },
   "main": "./dist-cjs/index.js",
   "types": "./dist-types/index.d.ts",
@@ -92,13 +91,6 @@
   },
   "engines": {
     "node": ">=10.0.0"
-  },
-  "typesVersions": {
-    "<4.0": {
-      "dist-types/*": [
-        "dist-types/ts3.4/*"
-      ]
-    }
   },
   "license": "Apache-2.0"
 }
