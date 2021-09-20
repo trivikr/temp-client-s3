@@ -54,11 +54,9 @@ packages
               unlinkSync(downlevelTypesFilepath);
             } else {
               // Add file version to be updated in package.json
-              downlevelTypesVersions[join(distTypesFolder, fileName)] = join(
-                distTypesFolder,
-                downlevelTypesFolder,
-                fileName
-              );
+              downlevelTypesVersions[join(distTypesFolder, fileName)] = [
+                join(distTypesFolder, downlevelTypesFolder, fileName),
+              ];
               // Strip comments from downlevel-dts file
               const content = readFileSync(downlevelTypesFilepath, "utf8");
               writeFileSync(downlevelTypesFilepath, stripComments(content));
