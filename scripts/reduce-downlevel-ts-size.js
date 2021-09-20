@@ -28,10 +28,17 @@ packages
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .forEach((workspaceDir) => {
-        const downlevelDir = join(process.cwd(), workspacesDir, workspaceDir, "dist-types/ts3.4");
-        getAllFiles(downlevelDir).forEach((filepath) => {
-          const content = readFileSync(filepath, "utf8");
-          writeFileSync(filepath, stripComments(content));
+        const typesDir = join(process.cwd(), workspacesDir, workspaceDir, "dist-types");
+        const downlevelTypesDir = join(process.cwd(), workspacesDir, workspaceDir, "dist-types/ts3.4");
+        getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
+          const fileName = downlevelTypesFilepath.replace(downlevelTypesDir, "");
+          const typesFilepath = join(typesDir, fileName);
+          const typesFileContent = readFileSync(typesFilepath);
+          const downlevelTypesFileContent = readFileSync(downlevelTypesFilepath);
+          if (downlevelTypesFileContent === typesFileContent) {
+            console.log(fileName);
+          }
+          // writeFileSync(downlevelTypesFilepath, stripComments(downlevelFileContent));
         });
       });
   });
