@@ -35,31 +35,43 @@ packages
         const downlevelTypesFolder = "ts3.4";
         const downlevelTypesVersions = {};
 
-        const typesDir = join(workspaceDirPath, distTypesFolder);
-        const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
-        getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
-          const fileName = downlevelTypesFilepath.replace(downlevelTypesDir, "");
-          const typesFilepath = join(typesDir, fileName);
-          const { status } = spawnSync("diff", ["--strip-trailing-cr", typesFilepath, downlevelTypesFilepath]);
-          if (status === 0) {
-            // remove file from downlevelTypesFilepath
-            unlinkSync(downlevelTypesFilepath);
-          } else {
-            // Add file version to be updated in package.json
-            downlevelTypesVersions[join(distTypesFolder, fileName)] = join(
-              distTypesFolder,
-              downlevelTypesFolder,
-              fileName
-            );
-            // Strip comments from downlevel-dts file
-            const content = readFileSync(downlevelTypesFilepath, "utf8");
-            writeFileSync(downlevelTypesFilepath, stripComments(content));
-          }
-        });
+        const workspaceDistTypesFolder = join(workspacesDir, workspaceDir, distTypesFolder);
+        const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
+          workspaceDistTypesFolder,
+          join(workspaceDistTypesFolder, downlevelTypesFolder),
+        ]);
 
-        const packageManifestPath = join(workspaceDirPath, "package.json");
-        const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
-        packageManifest.typesVersions["<4.0"] = downlevelTypesVersions;
-        writeFileSync(packageManifestPath, JSON.stringify(packageManifest, null, 2).concat(`\n`));
+        if (downlevelStatus === 0) {
+          const typesDir = join(workspaceDirPath, distTypesFolder);
+          const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
+
+          getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
+            const fileName = downlevelTypesFilepath.replace(downlevelTypesDir, "");
+            const typesFilepath = join(typesDir, fileName);
+            const { status } = spawnSync("diff", ["--strip-trailing-cr", typesFilepath, downlevelTypesFilepath]);
+            if (status === 0) {
+              // remove file from downlevelTypesFilepath
+              unlinkSync(downlevelTypesFilepath);
+            } else {
+              // Add file version to be updated in package.json
+              downlevelTypesVersions[join(distTypesFolder, fileName)] = join(
+                distTypesFolder,
+                downlevelTypesFolder,
+                fileName
+              );
+              // Strip comments from downlevel-dts file
+              const content = readFileSync(downlevelTypesFilepath, "utf8");
+              writeFileSync(downlevelTypesFilepath, stripComments(content));
+            }
+          });
+
+          const packageManifestPath = join(workspaceDirPath, "package.json");
+          const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
+          packageManifest.typesVersions = { "<4.0": downlevelTypesVersions };
+          writeFileSync(packageManifestPath, JSON.stringify(packageManifest, null, 2).concat(`\n`));
+        } else {
+          console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
+          console.log(downlevelError);
+        }
       });
   });
