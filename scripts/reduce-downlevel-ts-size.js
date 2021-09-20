@@ -1,5 +1,6 @@
-const { readdirSync, readFileSync, statSync, writeFileSync } = require("fs");
+const { readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } = require("fs");
 const { join } = require("path");
+const { spawnSync } = require("child_process");
 const stripComments = require("strip-comments");
 
 const { packages } = JSON.parse(readFileSync(join(process.cwd(), "package.json"))).workspaces;
@@ -28,10 +29,37 @@ packages
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .forEach((workspaceDir) => {
-        const downlevelDir = join(process.cwd(), workspacesDir, workspaceDir, "dist-types/ts3.4");
-        getAllFiles(downlevelDir).forEach((filepath) => {
-          const content = readFileSync(filepath, "utf8");
-          writeFileSync(filepath, stripComments(content));
+        const workspaceDirPath = join(process.cwd(), workspacesDir, workspaceDir);
+
+        const distTypesFolder = "dist-types";
+        const downlevelTypesFolder = "ts3.4";
+        const downlevelTypesVersions = {};
+
+        const typesDir = join(workspaceDirPath, distTypesFolder);
+        const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
+        getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
+          const fileName = downlevelTypesFilepath.replace(downlevelTypesDir, "");
+          const typesFilepath = join(typesDir, fileName);
+          const { status } = spawnSync("diff", ["--strip-trailing-cr", typesFilepath, downlevelTypesFilepath]);
+          if (status === 0) {
+            // remove file from downlevelTypesFilepath
+            unlinkSync(downlevelTypesFilepath);
+          } else {
+            // Add file version to be updated in package.json
+            downlevelTypesVersions[join(distTypesFolder, fileName)] = join(
+              distTypesFolder,
+              downlevelTypesFolder,
+              fileName
+            );
+            // Strip comments from downlevel-dts file
+            const content = readFileSync(downlevelTypesFilepath, "utf8");
+            writeFileSync(downlevelTypesFilepath, stripComments(content));
+          }
         });
+
+        const packageManifestPath = join(workspaceDirPath, "package.json");
+        const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
+        packageManifest.typesVersions["<4.0"] = downlevelTypesVersions;
+        writeFileSync(packageManifestPath, JSON.stringify(packageManifest, null, 2).concat(`\n`));
       });
   });
