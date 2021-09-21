@@ -95,20 +95,20 @@
   "license": "Apache-2.0",
   "typesVersions": {
     "<4.0": {
-      "dist-types/commands/PutObjectCommand.d.ts": [
-        "dist-types/ts3.4/commands/PutObjectCommand.d.ts"
+      "dist-types/commands/index.d.ts": [
+        "dist-types/commands/index.downlevel.d.ts"
       ],
-      "dist-types/commands/UploadPartCommand.d.ts": [
-        "dist-types/ts3.4/commands/UploadPartCommand.d.ts"
+      "dist-types/index.d.ts": [
+        "dist-types/index.downlevel.d.ts"
       ],
-      "dist-types/commands/WriteGetObjectResponseCommand.d.ts": [
-        "dist-types/ts3.4/commands/WriteGetObjectResponseCommand.d.ts"
+      "dist-types/models/index.d.ts": [
+        "dist-types/models/index.downlevel.d.ts"
       ],
-      "dist-types/models/models_0.d.ts": [
-        "dist-types/ts3.4/models/models_0.d.ts"
+      "dist-types/pagination/index.d.ts": [
+        "dist-types/pagination/index.downlevel.d.ts"
       ],
-      "dist-types/models/models_1.d.ts": [
-        "dist-types/ts3.4/models/models_1.d.ts"
+      "dist-types/waiters/index.d.ts": [
+        "dist-types/waiters/index.downlevel.d.ts"
       ]
     }
   }
