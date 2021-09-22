@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } = require("fs");
+const { existsSync, readdirSync, readFileSync, statSync, writeFileSync } = require("fs");
 const { join } = require("path");
 const { spawnSync } = require("child_process");
 const stripComments = require("strip-comments");
@@ -35,6 +35,12 @@ packages
         const downlevelTypesFolder = "ts3.4";
 
         const workspaceDistTypesFolder = join(workspacesDir, workspaceDir, distTypesFolder);
+        if (!existsSync(workspaceDistTypesFolder)) {
+          console.log(`The types for ${join(workspacesDir, workspaceDir)} does not exist.`);
+          console.log(`Folder checked: ${workspaceDistTypesFolder}`);
+          return;
+        }
+
         const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
           workspaceDistTypesFolder,
           join(workspaceDistTypesFolder, downlevelTypesFolder),
