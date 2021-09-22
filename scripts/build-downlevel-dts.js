@@ -44,13 +44,13 @@ packages
         const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
         // Create downlevel-dts folder if it doesn't exist
         if (!existsSync(workspaceDistTypesDownlevelFolder)) {
-          const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
+          const { error } = spawnSync("./node_modules/.bin/downlevel-dts", [
             workspaceDistTypesFolder,
             join(workspaceDistTypesFolder, downlevelTypesFolder),
           ]);
-          if (downlevelStatus !== 0) {
+          if (error) {
             console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
-            console.log(downlevelError);
+            console.log(error);
           }
         }
 
