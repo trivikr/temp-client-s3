@@ -30,47 +30,44 @@ packages
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
         const workspaceDir = join(workspacesDir, workspaceName);
-        const downlevelTypesFolder = "ts3.4";
+        const downlevelDirname = "ts3.4";
 
         const tsTypesConfigPath = join(workspaceDir, "tsconfig.types.json");
-        const distTypesFolder = JSON.parse(readFileSync(tsTypesConfigPath).toString()).compilerOptions.declarationDir;
+        const declarationDirname = JSON.parse(readFileSync(tsTypesConfigPath).toString()).compilerOptions
+          .declarationDir;
 
-        if (!distTypesFolder) {
+        if (!declarationDirname) {
           throw new Error(`The declarationDir is not defined in "${tsTypesConfigPath}".`);
         }
 
-        const workspaceDistTypesFolder = join(workspaceDir, distTypesFolder);
-        if (!existsSync(workspaceDistTypesFolder)) {
+        const declarationDir = join(workspaceDir, declarationDirname);
+        if (!existsSync(declarationDir)) {
           throw new Error(
             `The types for "${workspaceName}" do not exist.\n` +
               `Either "yarn build:types" is not run in workspace "${workspaceDir}" or` +
-              `types are not emitted in "${distTypesFolder}" folder.`
+              `types are not emitted in "${declarationDirname}" folder.`
           );
         }
 
-        const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
+        const downlevelDir = join(declarationDir, downlevelDirname);
         // Create downlevel-dts folder if it doesn't exist
-        if (!existsSync(workspaceDistTypesDownlevelFolder)) {
-          execSync(
-            ["./node_modules/.bin/downlevel-dts", workspaceDistTypesFolder, workspaceDistTypesDownlevelFolder].join(" ")
-          );
+        if (!existsSync(downlevelDir)) {
+          execSync(["./node_modules/.bin/downlevel-dts", declarationDir, downlevelDir].join(" "));
         }
 
         // Process downlevel-dts folder if it exists
-        if (existsSync(workspaceDistTypesDownlevelFolder)) {
-          const downlevelTypesDir = join(workspaceDir, distTypesFolder, downlevelTypesFolder);
-
+        if (existsSync(downlevelDir)) {
           // Add typesVersions in package.json
-          const packageManifestPath = join(workspaceDir, "package.json");
-          const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
-          packageManifest.typesVersions = {
+          const packageJsonPath = join(workspaceDir, "package.json");
+          const packageJson = JSON.parse(readFileSync(packageJsonPath).toString());
+          packageJson.typesVersions = {
             "<4.0": {
-              [`${distTypesFolder}/*`]: [`${distTypesFolder}/${downlevelTypesFolder}/*`],
+              [`${declarationDirname}/*`]: [`${declarationDirname}/${downlevelDirname}/*`],
             },
           };
-          writeFileSync(packageManifestPath, JSON.stringify(packageManifest, null, 2).concat(`\n`));
+          writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2).concat(`\n`));
 
-          getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
+          getAllFiles(downlevelDir).forEach((downlevelTypesFilepath) => {
             // Strip comments from downlevel-dts file
             try {
               const content = readFileSync(downlevelTypesFilepath, "utf8");
