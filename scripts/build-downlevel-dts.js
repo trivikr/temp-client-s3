@@ -30,12 +30,11 @@ packages
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
         const workspaceDir = join(workspacesDir, workspaceName);
-        const workspaceDirpath = join(process.cwd(), workspaceDir);
 
         const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
 
-        const workspaceDistTypesFolder = join(workspacesDir, workspaceName, distTypesFolder);
+        const workspaceDistTypesFolder = join(workspaceDir, distTypesFolder);
         if (!existsSync(workspaceDistTypesFolder)) {
           throw new Error(
             `The types for "${workspaceName}" do not exist.\n` +
@@ -58,10 +57,10 @@ packages
 
         // Process downlevel-dts folder if it exists
         if (existsSync(workspaceDistTypesDownlevelFolder)) {
-          const downlevelTypesDir = join(workspaceDirpath, distTypesFolder, downlevelTypesFolder);
+          const downlevelTypesDir = join(workspaceDir, distTypesFolder, downlevelTypesFolder);
 
           // Add typesVersions in package.json
-          const packageManifestPath = join(workspaceDirpath, "package.json");
+          const packageManifestPath = join(workspaceDir, "package.json");
           const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
           packageManifest.typesVersions = {
             "<4.0": {
