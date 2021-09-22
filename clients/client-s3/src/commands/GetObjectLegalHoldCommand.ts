@@ -23,7 +23,7 @@ export interface GetObjectLegalHoldCommandOutput extends GetObjectLegalHoldOutpu
 
 /**
  * <p>Gets an object's current Legal Hold status. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking Objects</a>.</p>
- *          <p>This action is not supported by Amazon S3 on Outposts.</p>
+ * <p>This action is not supported by Amazon S3 on Outposts.</p>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript

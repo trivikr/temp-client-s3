@@ -24,25 +24,25 @@ export interface GetBucketCorsCommandOutput extends GetBucketCorsOutput, __Metad
 /**
  * <p>Returns the cors configuration information set for the bucket.</p>
  *
- *          <p> To use this operation, you must have permission to perform the s3:GetBucketCORS action.
- *          By default, the bucket owner has this permission and can grant it to others.</p>
+ * <p> To use this operation, you must have permission to perform the s3:GetBucketCORS action.
+ * By default, the bucket owner has this permission and can grant it to others.</p>
  *
- *          <p> For more information about cors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html"> Enabling
- *             Cross-Origin Resource Sharing</a>.</p>
+ * <p> For more information about cors, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html"> Enabling
+ *    Cross-Origin Resource Sharing</a>.</p>
  *
- *          <p>The following operations are related to <code>GetBucketCors</code>:</p>
- *          <ul>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html">PutBucketCors</a>
- *                </p>
- *             </li>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html">DeleteBucketCors</a>
- *                </p>
- *             </li>
- *          </ul>
+ * <p>The following operations are related to <code>GetBucketCors</code>:</p>
+ * <ul>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html">PutBucketCors</a>
+ *       </p>
+ *    </li>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html">DeleteBucketCors</a>
+ *       </p>
+ *    </li>
+ * </ul>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript

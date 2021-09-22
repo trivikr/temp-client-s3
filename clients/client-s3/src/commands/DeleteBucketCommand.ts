@@ -22,23 +22,23 @@ export interface DeleteBucketCommandOutput extends __MetadataBearer {}
 
 /**
  * <p>Deletes the S3 bucket. All objects (including all object versions and delete markers) in
- *          the bucket must be deleted before the bucket itself can be deleted.</p>
+ * the bucket must be deleted before the bucket itself can be deleted.</p>
  *
- *          <p class="title">
- *             <b>Related Resources</b>
- *          </p>
- *          <ul>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
- *                </p>
- *             </li>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html">DeleteObject</a>
- *                </p>
- *             </li>
- *          </ul>
+ * <p class="title">
+ *    <b>Related Resources</b>
+ * </p>
+ * <ul>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
+ *       </p>
+ *    </li>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html">DeleteObject</a>
+ *       </p>
+ *    </li>
+ * </ul>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript
