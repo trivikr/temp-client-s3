@@ -30,8 +30,14 @@ packages
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
         const workspaceDir = join(workspacesDir, workspaceName);
-        const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
+
+        const tsTypesConfigPath = join(workspaceDir, "tsconfig.types.json");
+        const distTypesFolder = JSON.parse(readFileSync(tsTypesConfigPath).toString()).compilerOptions.declarationDir;
+
+        if (!distTypesFolder) {
+          throw new Error(`The declarationDir is not defined in "${tsTypesConfigPath}".`);
+        }
 
         const workspaceDistTypesFolder = join(workspaceDir, distTypesFolder);
         if (!existsSync(workspaceDistTypesFolder)) {
