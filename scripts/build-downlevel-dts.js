@@ -41,12 +41,21 @@ packages
           return;
         }
 
-        const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
-          workspaceDistTypesFolder,
-          join(workspaceDistTypesFolder, downlevelTypesFolder),
-        ]);
+        const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
+        // Create downlevel-dts folder if it doesn't exist
+        if (!existsSync(workspaceDistTypesDownlevelFolder)) {
+          const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
+            workspaceDistTypesFolder,
+            join(workspaceDistTypesFolder, downlevelTypesFolder),
+          ]);
+          if (downlevelStatus !== 0) {
+            console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
+            console.log(downlevelError);
+          }
+        }
 
-        if (downlevelStatus === 0) {
+        // Strip comments from downlevel-dts files if they exist
+        if (existsSync(workspaceDistTypesDownlevelFolder)) {
           const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
 
           // Add typesVersions in package.json
@@ -64,9 +73,6 @@ packages
             const content = readFileSync(downlevelTypesFilepath, "utf8");
             writeFileSync(downlevelTypesFilepath, stripComments(content));
           });
-        } else {
-          console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
-          console.log(downlevelError);
         }
       });
   });
