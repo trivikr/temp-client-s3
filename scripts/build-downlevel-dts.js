@@ -30,7 +30,6 @@ packages
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
         const workspaceDir = join(workspacesDir, workspaceName);
-
         const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
 
