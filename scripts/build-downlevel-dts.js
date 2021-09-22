@@ -44,8 +44,7 @@ packages
         if (!existsSync(declarationDir)) {
           throw new Error(
             `The types for "${workspaceName}" do not exist.\n` +
-              `Either "yarn build:types" is not run in workspace "${workspaceDir}" or` +
-              `types are not emitted in "${declarationDirname}" folder.`
+              `Please build types for workspace "${workspaceDir}" before running downlevel-dts script.`
           );
         }
 
