@@ -23,16 +23,16 @@ export interface GetBucketRequestPaymentCommandOutput extends GetBucketRequestPa
 
 /**
  * <p>Returns the request payment configuration of a bucket. To use this version of the
- *          operation, you must be the bucket owner. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">Requester Pays Buckets</a>.</p>
+ * operation, you must be the bucket owner. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">Requester Pays Buckets</a>.</p>
  *
- *          <p>The following operations are related to <code>GetBucketRequestPayment</code>:</p>
- *          <ul>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html">ListObjects</a>
- *                </p>
- *             </li>
- *          </ul>
+ * <p>The following operations are related to <code>GetBucketRequestPayment</code>:</p>
+ * <ul>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html">ListObjects</a>
+ *       </p>
+ *    </li>
+ * </ul>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript

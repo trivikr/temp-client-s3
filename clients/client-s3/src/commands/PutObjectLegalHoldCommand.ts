@@ -24,9 +24,9 @@ export interface PutObjectLegalHoldCommandOutput extends PutObjectLegalHoldOutpu
 
 /**
  * <p>Applies a Legal Hold configuration to the specified object. For more information, see
- *             <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking
- *             Objects</a>.</p>
- *          <p>This action is not supported by Amazon S3 on Outposts.</p>
+ *    <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking
+ *    Objects</a>.</p>
+ * <p>This action is not supported by Amazon S3 on Outposts.</p>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript

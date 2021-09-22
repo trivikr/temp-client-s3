@@ -23,21 +23,21 @@ export interface GetBucketLoggingCommandOutput extends GetBucketLoggingOutput, _
 
 /**
  * <p>Returns the logging status of a bucket and the permissions users have to view and modify
- *          that status. To use GET, you must be the bucket owner.</p>
+ * that status. To use GET, you must be the bucket owner.</p>
  *
- *          <p>The following operations are related to <code>GetBucketLogging</code>:</p>
- *          <ul>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
- *                </p>
- *             </li>
- *             <li>
- *                <p>
- *                   <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html">PutBucketLogging</a>
- *                </p>
- *             </li>
- *          </ul>
+ * <p>The following operations are related to <code>GetBucketLogging</code>:</p>
+ * <ul>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
+ *       </p>
+ *    </li>
+ *    <li>
+ *       <p>
+ *          <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html">PutBucketLogging</a>
+ *       </p>
+ *    </li>
+ * </ul>
  * @example
  * Use a bare-bones client and the command you need to make an API call.
  * ```javascript
