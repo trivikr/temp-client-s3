@@ -37,10 +37,7 @@ packages
         const distTypesFolder = JSON.parse(readFileSync(tsTypesConfigPath).toString()).compilerOptions.declarationDir;
 
         if (!distTypesFolder) {
-          throw new Error(
-            `The declarationDir is not defined for "${workspaceName}" do not exist.\n` +
-              `Attempted to read "${tsTypesConfigPath}".`
-          );
+          throw new Error(`The declarationDir is not defined in "${tsTypesConfigPath}".`);
         }
 
         const workspaceDistTypesFolder = join(workspaceDir, distTypesFolder);
