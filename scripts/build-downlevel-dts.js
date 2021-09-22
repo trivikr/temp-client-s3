@@ -1,5 +1,6 @@
-const { readdirSync, readFileSync, statSync, writeFileSync } = require("fs");
+const { readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } = require("fs");
 const { join } = require("path");
+const { spawnSync } = require("child_process");
 const stripComments = require("strip-comments");
 
 const { packages } = JSON.parse(readFileSync(join(process.cwd(), "package.json"))).workspaces;
@@ -28,10 +29,38 @@ packages
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .forEach((workspaceDir) => {
-        const downlevelDir = join(process.cwd(), workspacesDir, workspaceDir, "dist-types/ts3.4");
-        getAllFiles(downlevelDir).forEach((filepath) => {
-          const content = readFileSync(filepath, "utf8");
-          writeFileSync(filepath, stripComments(content));
-        });
+        const workspaceDirPath = join(process.cwd(), workspacesDir, workspaceDir);
+
+        const distTypesFolder = "dist-types";
+        const downlevelTypesFolder = "ts3.4";
+
+        const workspaceDistTypesFolder = join(workspacesDir, workspaceDir, distTypesFolder);
+        const { status: downlevelStatus, error: downlevelError } = spawnSync("./node_modules/.bin/downlevel-dts", [
+          workspaceDistTypesFolder,
+          join(workspaceDistTypesFolder, downlevelTypesFolder),
+        ]);
+
+        if (downlevelStatus === 0) {
+          const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
+
+          // Add typesVersions in package.json
+          const packageManifestPath = join(workspaceDirPath, "package.json");
+          const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
+          packageManifest.typesVersions = {
+            "<4.0": {
+              [`${distTypesFolder}/*`]: [`${distTypesFolder}/${downlevelTypesFolder}/*`],
+            },
+          };
+          writeFileSync(packageManifestPath, JSON.stringify(packageManifest, null, 2).concat(`\n`));
+
+          getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
+            // Strip comments from downlevel-dts file
+            const content = readFileSync(downlevelTypesFilepath, "utf8");
+            writeFileSync(downlevelTypesFilepath, stripComments(content));
+          });
+        } else {
+          console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
+          console.log(downlevelError);
+        }
       });
   });
