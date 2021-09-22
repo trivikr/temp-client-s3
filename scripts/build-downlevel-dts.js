@@ -28,17 +28,19 @@ packages
     readdirSync(join(process.cwd(), workspacesDir), { withFileTypes: true })
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
-      .forEach((workspaceDir) => {
-        const workspaceDirPath = join(process.cwd(), workspacesDir, workspaceDir);
+      .forEach((workspaceName) => {
+        const workspaceDirPath = join(process.cwd(), workspacesDir, workspaceName);
 
         const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
 
-        const workspaceDistTypesFolder = join(workspacesDir, workspaceDir, distTypesFolder);
+        const workspaceDistTypesFolder = join(workspacesDir, workspaceName, distTypesFolder);
         if (!existsSync(workspaceDistTypesFolder)) {
-          console.log(`The types for ${join(workspacesDir, workspaceDir)} does not exist.`);
-          console.log(`Folder checked: ${workspaceDistTypesFolder}`);
-          return;
+          throw new Error(
+            `The types for "${workspaceName}" do not exist.\n` +
+              `Either "yarn build:types" is not run in workspace "${join(workspacesDir, workspaceName)}" or` +
+              `types are not emitted in "${distTypesFolder}" folder.`
+          );
         }
 
         const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
