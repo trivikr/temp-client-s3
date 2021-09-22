@@ -69,3 +69,16 @@ package size:  339.7 kB
 unpacked size: 3.8 MB
 total files:   448
 ```
+
+### v0.2.4
+
+The [@trivikr-test/client-s3@0.2.4](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.4)
+from [#21](https://github.com/trivikr/temp-client-s3/pull/21)
+removes unnecessary whitespace from comments.
+
+```console
+version:       0.2.4
+package size:  335.1 kB
+unpacked size: 3.7 MB
+total files:   448
+```
