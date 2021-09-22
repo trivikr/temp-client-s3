@@ -47,13 +47,14 @@ packages
         const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
         // Create downlevel-dts folder if it doesn't exist
         if (!existsSync(workspaceDistTypesDownlevelFolder)) {
-          execSync(
-            [
-              "./node_modules/.bin/downlevel-dts",
-              workspaceDistTypesFolder,
-              join(workspaceDistTypesFolder, downlevelTypesFolder),
-            ].join(" ")
-          );
+          const downlevelScript = [
+            "./node_modules/.bin/downlevel-dts",
+            workspaceDistTypesFolder,
+            join(workspaceDistTypesFolder, downlevelTypesFolder),
+          ].join(" ");
+          console.log(`Running downlevel script...`);
+          console.log(`${downlevelScript}`);
+          execSync(downlevelScript);
         }
 
         // Strip comments from downlevel-dts files if they exist
