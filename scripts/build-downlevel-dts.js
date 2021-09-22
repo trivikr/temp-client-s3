@@ -1,6 +1,6 @@
 const { existsSync, readdirSync, readFileSync, statSync, writeFileSync } = require("fs");
 const { join } = require("path");
-const { spawnSync } = require("child_process");
+const { execSync } = require("child_process");
 const stripComments = require("strip-comments");
 
 const { packages } = JSON.parse(readFileSync(join(process.cwd(), "package.json"))).workspaces;
@@ -29,7 +29,8 @@ packages
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
-        const workspaceDirPath = join(process.cwd(), workspacesDir, workspaceName);
+        const workspaceDir = join(workspacesDir, workspaceName);
+        const workspaceDirPath = join(process.cwd(), workspaceDir);
 
         const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
@@ -38,7 +39,7 @@ packages
         if (!existsSync(workspaceDistTypesFolder)) {
           throw new Error(
             `The types for "${workspaceName}" do not exist.\n` +
-              `Either "yarn build:types" is not run in workspace "${join(workspacesDir, workspaceName)}" or` +
+              `Either "yarn build:types" is not run in workspace "${workspaceDir}" or` +
               `types are not emitted in "${distTypesFolder}" folder.`
           );
         }
@@ -46,14 +47,13 @@ packages
         const workspaceDistTypesDownlevelFolder = join(workspaceDistTypesFolder, downlevelTypesFolder);
         // Create downlevel-dts folder if it doesn't exist
         if (!existsSync(workspaceDistTypesDownlevelFolder)) {
-          const { error } = spawnSync("./node_modules/.bin/downlevel-dts", [
-            workspaceDistTypesFolder,
-            join(workspaceDistTypesFolder, downlevelTypesFolder),
-          ]);
-          if (error) {
-            console.log(`Error while calling downlevel-dts for "${workspaceDirPath}"`);
-            console.log(error);
-          }
+          execSync(
+            [
+              "./node_modules/.bin/downlevel-dts",
+              workspaceDistTypesFolder,
+              join(workspaceDistTypesFolder, downlevelTypesFolder),
+            ].join(" ")
+          );
         }
 
         // Strip comments from downlevel-dts files if they exist
