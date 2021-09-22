@@ -30,7 +30,7 @@ packages
       .map((dirent) => dirent.name)
       .forEach((workspaceName) => {
         const workspaceDir = join(workspacesDir, workspaceName);
-        const workspaceDirPath = join(process.cwd(), workspaceDir);
+        const workspaceDirpath = join(process.cwd(), workspaceDir);
 
         const distTypesFolder = "dist-types";
         const downlevelTypesFolder = "ts3.4";
@@ -58,10 +58,10 @@ packages
 
         // Process downlevel-dts folder if it exists
         if (existsSync(workspaceDistTypesDownlevelFolder)) {
-          const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
+          const downlevelTypesDir = join(workspaceDirpath, distTypesFolder, downlevelTypesFolder);
 
           // Add typesVersions in package.json
-          const packageManifestPath = join(workspaceDirPath, "package.json");
+          const packageManifestPath = join(workspaceDirpath, "package.json");
           const packageManifest = JSON.parse(readFileSync(packageManifestPath).toString());
           packageManifest.typesVersions = {
             "<4.0": {
@@ -77,7 +77,7 @@ packages
               writeFileSync(downlevelTypesFilepath, stripComments(content));
             } catch (error) {
               console.error(
-                `Error while stripping comments from ${downlevelTypesFilepath.replace(workspaceDistTypesFolder, "")}`
+                `Error while stripping comments from "${downlevelTypesFilepath.replace(process.cwd(), "")}"`
               );
               console.error(error);
             }
