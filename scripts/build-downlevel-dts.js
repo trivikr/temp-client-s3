@@ -56,7 +56,7 @@ packages
           );
         }
 
-        // Strip comments from downlevel-dts files if they exist
+        // Process downlevel-dts folder if it exists
         if (existsSync(workspaceDistTypesDownlevelFolder)) {
           const downlevelTypesDir = join(workspaceDirPath, distTypesFolder, downlevelTypesFolder);
 
@@ -72,8 +72,15 @@ packages
 
           getAllFiles(downlevelTypesDir).forEach((downlevelTypesFilepath) => {
             // Strip comments from downlevel-dts file
-            const content = readFileSync(downlevelTypesFilepath, "utf8");
-            writeFileSync(downlevelTypesFilepath, stripComments(content));
+            try {
+              const content = readFileSync(downlevelTypesFilepath, "utf8");
+              writeFileSync(downlevelTypesFilepath, stripComments(content));
+            } catch (error) {
+              console.error(
+                `Error while stripping comments from ${downlevelTypesFilepath.replace(workspaceDistTypesFolder, "")}`
+              );
+              console.error(error);
+            }
           });
         }
       });
