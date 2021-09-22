@@ -46,11 +46,7 @@ packages
         // Create downlevel-dts folder if it doesn't exist
         if (!existsSync(workspaceDistTypesDownlevelFolder)) {
           execSync(
-            [
-              "./node_modules/.bin/downlevel-dts",
-              workspaceDistTypesFolder,
-              join(workspaceDistTypesFolder, downlevelTypesFolder),
-            ].join(" ")
+            ["./node_modules/.bin/downlevel-dts", workspaceDistTypesFolder, workspaceDistTypesDownlevelFolder].join(" ")
           );
         }
 
