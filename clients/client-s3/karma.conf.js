@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = function (config) {
   config.set({
     basePath: "",
@@ -33,6 +35,7 @@ module.exports = function (config) {
           },
         ],
       },
+      plugins: [new webpack.NormalModuleReplacementPlugin(/\.\/runtimeConfig$/, "./runtimeConfig.browser")],
       devtool: "inline-source-map",
     },
     envPreprocessor: ["AWS_SMOKE_TEST_REGION", "AWS_SMOKE_TEST_BUCKET"],
