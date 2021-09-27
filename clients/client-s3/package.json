@@ -1,7 +1,7 @@
 {
   "name": "@trivikr-test/client-s3",
   "description": "Testing install size reduction in @aws-sdk/client-s3",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "scripts": {
     "clean": "yarn remove-dist && yarn remove-documentation",
     "build-documentation": "yarn remove-documentation && typedoc ./",
