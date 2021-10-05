@@ -82,3 +82,9 @@ package size:  335.1 kB
 unpacked size: 3.7 MB
 total files:   448
 ```
+
+### v0.2.5
+
+The [@trivikr-test/client-s3@0.2.5](https://www.npmjs.com/package/@trivikr-test/client-s3/v/0.2.5)
+from [#37](https://github.com/trivikr/temp-client-s3/pull/37)
+adds a fix to support client in browser and Node.js environments.
