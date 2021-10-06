@@ -425,6 +425,22 @@ import {
 } from "./commands/WriteGetObjectResponseCommand";
 import { HttpHandlerOptions as __HttpHandlerOptions } from "@aws-sdk/types";
 
+const apiCall = <Cmd, Output, Opts>(
+  send: Function,
+  command: Cmd,
+  optionsOrCb?: Opts | ((err: any, data?: Output) => void),
+  cb?: (err: any, data?: Output) => void
+): Promise<Output> | void => {
+  if (typeof optionsOrCb === "function") {
+    send(command, optionsOrCb);
+  } else if (typeof cb === "function") {
+    if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+    send(command, optionsOrCb || {}, cb);
+  } else {
+    return send(command, optionsOrCb);
+  }
+};
+
 /**
  * <p></p>
  */
@@ -488,15 +504,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: AbortMultipartUploadCommandOutput) => void),
     cb?: (err: any, data?: AbortMultipartUploadCommandOutput) => void
   ): Promise<AbortMultipartUploadCommandOutput> | void {
-    const command = new AbortMultipartUploadCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new AbortMultipartUploadCommand(args), optionsOrCb, cb);
   }
 
   /**
