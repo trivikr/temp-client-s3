@@ -637,15 +637,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: CompleteMultipartUploadCommandOutput) => void),
     cb?: (err: any, data?: CompleteMultipartUploadCommandOutput) => void
   ): Promise<CompleteMultipartUploadCommandOutput> | void {
-    const command = new CompleteMultipartUploadCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new CompleteMultipartUploadCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -832,15 +824,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: CopyObjectCommandOutput) => void),
     cb?: (err: any, data?: CopyObjectCommandOutput) => void
   ): Promise<CopyObjectCommandOutput> | void {
-    const command = new CopyObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new CopyObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -979,15 +963,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: CreateBucketCommandOutput) => void),
     cb?: (err: any, data?: CreateBucketCommandOutput) => void
   ): Promise<CreateBucketCommandOutput> | void {
-    const command = new CreateBucketCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new CreateBucketCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1271,15 +1247,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: CreateMultipartUploadCommandOutput) => void),
     cb?: (err: any, data?: CreateMultipartUploadCommandOutput) => void
   ): Promise<CreateMultipartUploadCommandOutput> | void {
-    const command = new CreateMultipartUploadCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new CreateMultipartUploadCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1317,15 +1285,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketCommandOutput) => void
   ): Promise<DeleteBucketCommandOutput> | void {
-    const command = new DeleteBucketCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1378,15 +1338,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketAnalyticsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketAnalyticsConfigurationCommandOutput) => void
   ): Promise<DeleteBucketAnalyticsConfigurationCommandOutput> | void {
-    const command = new DeleteBucketAnalyticsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketAnalyticsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1431,15 +1383,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketCorsCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketCorsCommandOutput) => void
   ): Promise<DeleteBucketCorsCommandOutput> | void {
-    const command = new DeleteBucketCorsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketCorsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1486,15 +1430,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketEncryptionCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketEncryptionCommandOutput) => void
   ): Promise<DeleteBucketEncryptionCommandOutput> | void {
-    const command = new DeleteBucketEncryptionCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketEncryptionCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1542,15 +1478,7 @@ export class S3 extends S3Client {
       | ((err: any, data?: DeleteBucketIntelligentTieringConfigurationCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketIntelligentTieringConfigurationCommandOutput) => void
   ): Promise<DeleteBucketIntelligentTieringConfigurationCommandOutput> | void {
-    const command = new DeleteBucketIntelligentTieringConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketIntelligentTieringConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1599,15 +1527,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketInventoryConfigurationCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketInventoryConfigurationCommandOutput) => void
   ): Promise<DeleteBucketInventoryConfigurationCommandOutput> | void {
-    const command = new DeleteBucketInventoryConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketInventoryConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1656,15 +1576,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketLifecycleCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketLifecycleCommandOutput) => void
   ): Promise<DeleteBucketLifecycleCommandOutput> | void {
-    const command = new DeleteBucketLifecycleCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketLifecycleCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1723,15 +1635,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketMetricsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketMetricsConfigurationCommandOutput) => void
   ): Promise<DeleteBucketMetricsConfigurationCommandOutput> | void {
-    const command = new DeleteBucketMetricsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketMetricsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1773,15 +1677,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketOwnershipControlsCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketOwnershipControlsCommandOutput) => void
   ): Promise<DeleteBucketOwnershipControlsCommandOutput> | void {
-    const command = new DeleteBucketOwnershipControlsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketOwnershipControlsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1837,15 +1733,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketPolicyCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketPolicyCommandOutput) => void
   ): Promise<DeleteBucketPolicyCommandOutput> | void {
-    const command = new DeleteBucketPolicyCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketPolicyCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1894,15 +1782,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketReplicationCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketReplicationCommandOutput) => void
   ): Promise<DeleteBucketReplicationCommandOutput> | void {
-    const command = new DeleteBucketReplicationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketReplicationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -1943,15 +1823,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketTaggingCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketTaggingCommandOutput) => void
   ): Promise<DeleteBucketTaggingCommandOutput> | void {
-    const command = new DeleteBucketTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2001,15 +1873,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteBucketWebsiteCommandOutput) => void),
     cb?: (err: any, data?: DeleteBucketWebsiteCommandOutput) => void
   ): Promise<DeleteBucketWebsiteCommandOutput> | void {
-    const command = new DeleteBucketWebsiteCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteBucketWebsiteCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2060,15 +1924,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteObjectCommandOutput) => void),
     cb?: (err: any, data?: DeleteObjectCommandOutput) => void
   ): Promise<DeleteObjectCommandOutput> | void {
-    const command = new DeleteObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2148,15 +2004,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteObjectsCommandOutput) => void),
     cb?: (err: any, data?: DeleteObjectsCommandOutput) => void
   ): Promise<DeleteObjectsCommandOutput> | void {
-    const command = new DeleteObjectsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteObjectsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2204,15 +2052,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeleteObjectTaggingCommandOutput) => void),
     cb?: (err: any, data?: DeleteObjectTaggingCommandOutput) => void
   ): Promise<DeleteObjectTaggingCommandOutput> | void {
-    const command = new DeleteObjectTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeleteObjectTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2264,15 +2104,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: DeletePublicAccessBlockCommandOutput) => void),
     cb?: (err: any, data?: DeletePublicAccessBlockCommandOutput) => void
   ): Promise<DeletePublicAccessBlockCommandOutput> | void {
-    const command = new DeletePublicAccessBlockCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new DeletePublicAccessBlockCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2322,15 +2154,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketAccelerateConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketAccelerateConfigurationCommandOutput) => void
   ): Promise<GetBucketAccelerateConfigurationCommandOutput> | void {
-    const command = new GetBucketAccelerateConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketAccelerateConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2366,15 +2190,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketAclCommandOutput) => void),
     cb?: (err: any, data?: GetBucketAclCommandOutput) => void
   ): Promise<GetBucketAclCommandOutput> | void {
-    const command = new GetBucketAclCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketAclCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2427,15 +2243,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketAnalyticsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketAnalyticsConfigurationCommandOutput) => void
   ): Promise<GetBucketAnalyticsConfigurationCommandOutput> | void {
-    const command = new GetBucketAnalyticsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketAnalyticsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2479,15 +2287,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketCorsCommandOutput) => void),
     cb?: (err: any, data?: GetBucketCorsCommandOutput) => void
   ): Promise<GetBucketCorsCommandOutput> | void {
-    const command = new GetBucketCorsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketCorsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2532,15 +2332,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketEncryptionCommandOutput) => void),
     cb?: (err: any, data?: GetBucketEncryptionCommandOutput) => void
   ): Promise<GetBucketEncryptionCommandOutput> | void {
-    const command = new GetBucketEncryptionCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketEncryptionCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2588,15 +2380,7 @@ export class S3 extends S3Client {
       | ((err: any, data?: GetBucketIntelligentTieringConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketIntelligentTieringConfigurationCommandOutput) => void
   ): Promise<GetBucketIntelligentTieringConfigurationCommandOutput> | void {
-    const command = new GetBucketIntelligentTieringConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketIntelligentTieringConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2649,15 +2433,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketInventoryConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketInventoryConfigurationCommandOutput) => void
   ): Promise<GetBucketInventoryConfigurationCommandOutput> | void {
-    const command = new GetBucketInventoryConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketInventoryConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2736,15 +2512,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketLifecycleConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketLifecycleConfigurationCommandOutput) => void
   ): Promise<GetBucketLifecycleConfigurationCommandOutput> | void {
-    const command = new GetBucketLifecycleConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketLifecycleConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2788,15 +2556,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketLocationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketLocationCommandOutput) => void
   ): Promise<GetBucketLocationCommandOutput> | void {
-    const command = new GetBucketLocationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketLocationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2835,15 +2595,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketLoggingCommandOutput) => void),
     cb?: (err: any, data?: GetBucketLoggingCommandOutput) => void
   ): Promise<GetBucketLoggingCommandOutput> | void {
-    const command = new GetBucketLoggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketLoggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2903,15 +2655,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketMetricsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketMetricsConfigurationCommandOutput) => void
   ): Promise<GetBucketMetricsConfigurationCommandOutput> | void {
-    const command = new GetBucketMetricsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketMetricsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -2955,15 +2699,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketNotificationConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketNotificationConfigurationCommandOutput) => void
   ): Promise<GetBucketNotificationConfigurationCommandOutput> | void {
-    const command = new GetBucketNotificationConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketNotificationConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3004,15 +2740,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketOwnershipControlsCommandOutput) => void),
     cb?: (err: any, data?: GetBucketOwnershipControlsCommandOutput) => void
   ): Promise<GetBucketOwnershipControlsCommandOutput> | void {
-    const command = new GetBucketOwnershipControlsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketOwnershipControlsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3062,15 +2790,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketPolicyCommandOutput) => void),
     cb?: (err: any, data?: GetBucketPolicyCommandOutput) => void
   ): Promise<GetBucketPolicyCommandOutput> | void {
-    const command = new GetBucketPolicyCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketPolicyCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3124,15 +2844,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketPolicyStatusCommandOutput) => void),
     cb?: (err: any, data?: GetBucketPolicyStatusCommandOutput) => void
   ): Promise<GetBucketPolicyStatusCommandOutput> | void {
-    const command = new GetBucketPolicyStatusCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketPolicyStatusCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3190,15 +2902,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketReplicationCommandOutput) => void),
     cb?: (err: any, data?: GetBucketReplicationCommandOutput) => void
   ): Promise<GetBucketReplicationCommandOutput> | void {
-    const command = new GetBucketReplicationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketReplicationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3232,15 +2936,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketRequestPaymentCommandOutput) => void),
     cb?: (err: any, data?: GetBucketRequestPaymentCommandOutput) => void
   ): Promise<GetBucketRequestPaymentCommandOutput> | void {
-    const command = new GetBucketRequestPaymentCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketRequestPaymentCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3295,15 +2991,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketTaggingCommandOutput) => void),
     cb?: (err: any, data?: GetBucketTaggingCommandOutput) => void
   ): Promise<GetBucketTaggingCommandOutput> | void {
-    const command = new GetBucketTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3351,15 +3039,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketVersioningCommandOutput) => void),
     cb?: (err: any, data?: GetBucketVersioningCommandOutput) => void
   ): Promise<GetBucketVersioningCommandOutput> | void {
-    const command = new GetBucketVersioningCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketVersioningCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3403,15 +3083,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetBucketWebsiteCommandOutput) => void),
     cb?: (err: any, data?: GetBucketWebsiteCommandOutput) => void
   ): Promise<GetBucketWebsiteCommandOutput> | void {
-    const command = new GetBucketWebsiteCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetBucketWebsiteCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3609,15 +3281,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectCommandOutput) => void),
     cb?: (err: any, data?: GetObjectCommandOutput) => void
   ): Promise<GetObjectCommandOutput> | void {
-    const command = new GetObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3664,15 +3328,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectAclCommandOutput) => void),
     cb?: (err: any, data?: GetObjectAclCommandOutput) => void
   ): Promise<GetObjectAclCommandOutput> | void {
-    const command = new GetObjectAclCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectAclCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3697,15 +3353,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectLegalHoldCommandOutput) => void),
     cb?: (err: any, data?: GetObjectLegalHoldCommandOutput) => void
   ): Promise<GetObjectLegalHoldCommandOutput> | void {
-    const command = new GetObjectLegalHoldCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectLegalHoldCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3732,15 +3380,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectLockConfigurationCommandOutput) => void),
     cb?: (err: any, data?: GetObjectLockConfigurationCommandOutput) => void
   ): Promise<GetObjectLockConfigurationCommandOutput> | void {
-    const command = new GetObjectLockConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectLockConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3765,15 +3405,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectRetentionCommandOutput) => void),
     cb?: (err: any, data?: GetObjectRetentionCommandOutput) => void
   ): Promise<GetObjectRetentionCommandOutput> | void {
-    const command = new GetObjectRetentionCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectRetentionCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3824,15 +3456,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectTaggingCommandOutput) => void),
     cb?: (err: any, data?: GetObjectTaggingCommandOutput) => void
   ): Promise<GetObjectTaggingCommandOutput> | void {
-    const command = new GetObjectTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3872,15 +3496,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetObjectTorrentCommandOutput) => void),
     cb?: (err: any, data?: GetObjectTorrentCommandOutput) => void
   ): Promise<GetObjectTorrentCommandOutput> | void {
-    const command = new GetObjectTorrentCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetObjectTorrentCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3943,15 +3559,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: GetPublicAccessBlockCommandOutput) => void),
     cb?: (err: any, data?: GetPublicAccessBlockCommandOutput) => void
   ): Promise<GetPublicAccessBlockCommandOutput> | void {
-    const command = new GetPublicAccessBlockCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new GetPublicAccessBlockCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -3984,15 +3592,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: HeadBucketCommandOutput) => void),
     cb?: (err: any, data?: HeadBucketCommandOutput) => void
   ): Promise<HeadBucketCommandOutput> | void {
-    const command = new HeadBucketCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new HeadBucketCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4121,15 +3721,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: HeadObjectCommandOutput) => void),
     cb?: (err: any, data?: HeadObjectCommandOutput) => void
   ): Promise<HeadObjectCommandOutput> | void {
-    const command = new HeadObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new HeadObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4192,15 +3784,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListBucketAnalyticsConfigurationsCommandOutput) => void),
     cb?: (err: any, data?: ListBucketAnalyticsConfigurationsCommandOutput) => void
   ): Promise<ListBucketAnalyticsConfigurationsCommandOutput> | void {
-    const command = new ListBucketAnalyticsConfigurationsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListBucketAnalyticsConfigurationsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4248,15 +3832,7 @@ export class S3 extends S3Client {
       | ((err: any, data?: ListBucketIntelligentTieringConfigurationsCommandOutput) => void),
     cb?: (err: any, data?: ListBucketIntelligentTieringConfigurationsCommandOutput) => void
   ): Promise<ListBucketIntelligentTieringConfigurationsCommandOutput> | void {
-    const command = new ListBucketIntelligentTieringConfigurationsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListBucketIntelligentTieringConfigurationsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4318,15 +3894,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListBucketInventoryConfigurationsCommandOutput) => void),
     cb?: (err: any, data?: ListBucketInventoryConfigurationsCommandOutput) => void
   ): Promise<ListBucketInventoryConfigurationsCommandOutput> | void {
-    const command = new ListBucketInventoryConfigurationsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListBucketInventoryConfigurationsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4390,15 +3958,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListBucketMetricsConfigurationsCommandOutput) => void),
     cb?: (err: any, data?: ListBucketMetricsConfigurationsCommandOutput) => void
   ): Promise<ListBucketMetricsConfigurationsCommandOutput> | void {
-    const command = new ListBucketMetricsConfigurationsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListBucketMetricsConfigurationsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4416,15 +3976,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListBucketsCommandOutput) => void),
     cb?: (err: any, data?: ListBucketsCommandOutput) => void
   ): Promise<ListBucketsCommandOutput> | void {
-    const command = new ListBucketsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListBucketsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4498,15 +4050,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListMultipartUploadsCommandOutput) => void),
     cb?: (err: any, data?: ListMultipartUploadsCommandOutput) => void
   ): Promise<ListMultipartUploadsCommandOutput> | void {
-    const command = new ListMultipartUploadsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListMultipartUploadsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4561,15 +4105,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListObjectsCommandOutput) => void),
     cb?: (err: any, data?: ListObjectsCommandOutput) => void
   ): Promise<ListObjectsCommandOutput> | void {
-    const command = new ListObjectsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListObjectsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4634,15 +4170,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListObjectsV2CommandOutput) => void),
     cb?: (err: any, data?: ListObjectsV2CommandOutput) => void
   ): Promise<ListObjectsV2CommandOutput> | void {
-    const command = new ListObjectsV2Command(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListObjectsV2Command(args), optionsOrCb, cb);
   }
 
   /**
@@ -4704,15 +4232,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListObjectVersionsCommandOutput) => void),
     cb?: (err: any, data?: ListObjectVersionsCommandOutput) => void
   ): Promise<ListObjectVersionsCommandOutput> | void {
-    const command = new ListObjectVersionsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListObjectVersionsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4774,15 +4294,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: ListPartsCommandOutput) => void),
     cb?: (err: any, data?: ListPartsCommandOutput) => void
   ): Promise<ListPartsCommandOutput> | void {
-    const command = new ListPartsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new ListPartsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -4851,15 +4363,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketAccelerateConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketAccelerateConfigurationCommandOutput) => void
   ): Promise<PutBucketAccelerateConfigurationCommandOutput> | void {
-    const command = new PutBucketAccelerateConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketAccelerateConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5069,15 +4573,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketAclCommandOutput) => void),
     cb?: (err: any, data?: PutBucketAclCommandOutput) => void
   ): Promise<PutBucketAclCommandOutput> | void {
-    const command = new PutBucketAclCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketAclCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5216,15 +4712,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketAnalyticsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketAnalyticsConfigurationCommandOutput) => void
   ): Promise<PutBucketAnalyticsConfigurationCommandOutput> | void {
-    const command = new PutBucketAnalyticsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketAnalyticsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5304,15 +4792,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketCorsCommandOutput) => void),
     cb?: (err: any, data?: PutBucketCorsCommandOutput) => void
   ): Promise<PutBucketCorsCommandOutput> | void {
-    const command = new PutBucketCorsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketCorsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5368,15 +4848,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketEncryptionCommandOutput) => void),
     cb?: (err: any, data?: PutBucketEncryptionCommandOutput) => void
   ): Promise<PutBucketEncryptionCommandOutput> | void {
-    const command = new PutBucketEncryptionCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketEncryptionCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5484,15 +4956,7 @@ export class S3 extends S3Client {
       | ((err: any, data?: PutBucketIntelligentTieringConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketIntelligentTieringConfigurationCommandOutput) => void
   ): Promise<PutBucketIntelligentTieringConfigurationCommandOutput> | void {
-    const command = new PutBucketIntelligentTieringConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketIntelligentTieringConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5616,15 +5080,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketInventoryConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketInventoryConfigurationCommandOutput) => void
   ): Promise<PutBucketInventoryConfigurationCommandOutput> | void {
-    const command = new PutBucketInventoryConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketInventoryConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5741,15 +5197,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketLifecycleConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketLifecycleConfigurationCommandOutput) => void
   ): Promise<PutBucketLifecycleConfigurationCommandOutput> | void {
-    const command = new PutBucketLifecycleConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketLifecycleConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5852,15 +5300,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketLoggingCommandOutput) => void),
     cb?: (err: any, data?: PutBucketLoggingCommandOutput) => void
   ): Promise<PutBucketLoggingCommandOutput> | void {
-    const command = new PutBucketLoggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketLoggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -5934,15 +5374,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketMetricsConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketMetricsConfigurationCommandOutput) => void
   ): Promise<PutBucketMetricsConfigurationCommandOutput> | void {
-    const command = new PutBucketMetricsConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketMetricsConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6027,15 +5459,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketNotificationConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketNotificationConfigurationCommandOutput) => void
   ): Promise<PutBucketNotificationConfigurationCommandOutput> | void {
-    const command = new PutBucketNotificationConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketNotificationConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6075,15 +5499,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketOwnershipControlsCommandOutput) => void),
     cb?: (err: any, data?: PutBucketOwnershipControlsCommandOutput) => void
   ): Promise<PutBucketOwnershipControlsCommandOutput> | void {
-    const command = new PutBucketOwnershipControlsCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketOwnershipControlsCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6136,15 +5552,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketPolicyCommandOutput) => void),
     cb?: (err: any, data?: PutBucketPolicyCommandOutput) => void
   ): Promise<PutBucketPolicyCommandOutput> | void {
-    const command = new PutBucketPolicyCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketPolicyCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6237,15 +5645,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketReplicationCommandOutput) => void),
     cb?: (err: any, data?: PutBucketReplicationCommandOutput) => void
   ): Promise<PutBucketReplicationCommandOutput> | void {
-    const command = new PutBucketReplicationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketReplicationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6287,15 +5687,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketRequestPaymentCommandOutput) => void),
     cb?: (err: any, data?: PutBucketRequestPaymentCommandOutput) => void
   ): Promise<PutBucketRequestPaymentCommandOutput> | void {
-    const command = new PutBucketRequestPaymentCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketRequestPaymentCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6397,15 +5789,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketTaggingCommandOutput) => void),
     cb?: (err: any, data?: PutBucketTaggingCommandOutput) => void
   ): Promise<PutBucketTaggingCommandOutput> | void {
-    const command = new PutBucketTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6477,15 +5861,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketVersioningCommandOutput) => void),
     cb?: (err: any, data?: PutBucketVersioningCommandOutput) => void
   ): Promise<PutBucketVersioningCommandOutput> | void {
-    const command = new PutBucketVersioningCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketVersioningCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6634,15 +6010,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutBucketWebsiteCommandOutput) => void),
     cb?: (err: any, data?: PutBucketWebsiteCommandOutput) => void
   ): Promise<PutBucketWebsiteCommandOutput> | void {
-    const command = new PutBucketWebsiteCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutBucketWebsiteCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6754,15 +6122,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectCommandOutput) => void),
     cb?: (err: any, data?: PutObjectCommandOutput) => void
   ): Promise<PutObjectCommandOutput> | void {
-    const command = new PutObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6959,15 +6319,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectAclCommandOutput) => void),
     cb?: (err: any, data?: PutObjectAclCommandOutput) => void
   ): Promise<PutObjectAclCommandOutput> | void {
-    const command = new PutObjectAclCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectAclCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -6994,15 +6346,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectLegalHoldCommandOutput) => void),
     cb?: (err: any, data?: PutObjectLegalHoldCommandOutput) => void
   ): Promise<PutObjectLegalHoldCommandOutput> | void {
-    const command = new PutObjectLegalHoldCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectLegalHoldCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7046,15 +6390,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectLockConfigurationCommandOutput) => void),
     cb?: (err: any, data?: PutObjectLockConfigurationCommandOutput) => void
   ): Promise<PutObjectLockConfigurationCommandOutput> | void {
-    const command = new PutObjectLockConfigurationCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectLockConfigurationCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7090,15 +6426,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectRetentionCommandOutput) => void),
     cb?: (err: any, data?: PutObjectRetentionCommandOutput) => void
   ): Promise<PutObjectRetentionCommandOutput> | void {
-    const command = new PutObjectRetentionCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectRetentionCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7225,15 +6553,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutObjectTaggingCommandOutput) => void),
     cb?: (err: any, data?: PutObjectTaggingCommandOutput) => void
   ): Promise<PutObjectTaggingCommandOutput> | void {
-    const command = new PutObjectTaggingCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutObjectTaggingCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7301,15 +6621,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: PutPublicAccessBlockCommandOutput) => void),
     cb?: (err: any, data?: PutPublicAccessBlockCommandOutput) => void
   ): Promise<PutPublicAccessBlockCommandOutput> | void {
-    const command = new PutPublicAccessBlockCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new PutPublicAccessBlockCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7624,15 +6936,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: RestoreObjectCommandOutput) => void),
     cb?: (err: any, data?: RestoreObjectCommandOutput) => void
   ): Promise<RestoreObjectCommandOutput> | void {
-    const command = new RestoreObjectCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new RestoreObjectCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7772,15 +7076,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: SelectObjectContentCommandOutput) => void),
     cb?: (err: any, data?: SelectObjectContentCommandOutput) => void
   ): Promise<SelectObjectContentCommandOutput> | void {
-    const command = new SelectObjectContentCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new SelectObjectContentCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -7935,15 +7231,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: UploadPartCommandOutput) => void),
     cb?: (err: any, data?: UploadPartCommandOutput) => void
   ): Promise<UploadPartCommandOutput> | void {
-    const command = new UploadPartCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new UploadPartCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -8145,15 +7433,7 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: UploadPartCopyCommandOutput) => void),
     cb?: (err: any, data?: UploadPartCopyCommandOutput) => void
   ): Promise<UploadPartCopyCommandOutput> | void {
-    const command = new UploadPartCopyCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new UploadPartCopyCommand(args), optionsOrCb, cb);
   }
 
   /**
@@ -8199,14 +7479,6 @@ export class S3 extends S3Client {
     optionsOrCb?: __HttpHandlerOptions | ((err: any, data?: WriteGetObjectResponseCommandOutput) => void),
     cb?: (err: any, data?: WriteGetObjectResponseCommandOutput) => void
   ): Promise<WriteGetObjectResponseCommandOutput> | void {
-    const command = new WriteGetObjectResponseCommand(args);
-    if (typeof optionsOrCb === "function") {
-      this.send(command, optionsOrCb);
-    } else if (typeof cb === "function") {
-      if (typeof optionsOrCb !== "object") throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-      this.send(command, optionsOrCb || {}, cb);
-    } else {
-      return this.send(command, optionsOrCb);
-    }
+    return apiCall(this.send, new WriteGetObjectResponseCommand(args), optionsOrCb, cb);
   }
 }
